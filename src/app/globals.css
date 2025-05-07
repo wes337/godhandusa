@@ -69,6 +69,10 @@ body.off {
   animation-fill-mode: forwards;
 }
 
+body.on .scanline {
+  opacity: 0.25;
+}
+
 .overlay {
   background: linear-gradient(
     to bottom,
@@ -98,7 +102,9 @@ body.off {
   pointer-events: none;
   background-color: var(--color-dark-green);
   mix-blend-mode: overlay;
-  opacity: 0.25;
+  opacity: 0;
+
+  transition: all 2s ease;
 }
 
 .imageGlitch {
