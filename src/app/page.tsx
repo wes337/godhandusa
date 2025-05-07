@@ -11,7 +11,7 @@ export default function Home() {
       <div className="mt-auto">
         <ImageGlitch />
       </div>
-      <div className="flex flex-col gap-2 mt-auto mb-auto translate-y-[25vh]">
+      <div className="nav flex flex-col gap-2 mt-auto mb-auto translate-y-[25vh]">
         <NavLink href="/" icon="/music.png">
           Music
         </NavLink>

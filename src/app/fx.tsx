@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 
 export default function FX({ children }: { children: React.ReactNode }) {
-  useLayoutEffect(() => {
-    document.body.classList.remove("on");
-    document.body.classList.add("off");
-  }, []);
-
   useEffect(() => {
-    document.body.classList.remove("off");
-    document.body.classList.add("on");
+    document.body.classList.add("offReverse");
+
+    const timeout = setTimeout(() => {
+      document.body.classList.remove("offReverse");
+      document.body.classList.add("on");
+    }, 1000);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (

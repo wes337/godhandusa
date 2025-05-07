@@ -64,6 +64,11 @@ body.on {
   animation-fill-mode: forwards;
 }
 
+body.offReverse {
+  animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1) reverse;
+  animation-fill-mode: forwards;
+}
+
 body.off {
   animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1);
   animation-fill-mode: forwards;
@@ -129,6 +134,13 @@ body.off {
 @media only screen and (max-height: 900px) {
   .imageGlitch {
     transform: scale(0.75);
+  }
+}
+
+@media only screen and (max-height: 900px) and (min-width: 600px) and (max-width: 1100px) {
+  .nav {
+    flex-direction: row;
+    translate: 0 35vh;
   }
 }
 
