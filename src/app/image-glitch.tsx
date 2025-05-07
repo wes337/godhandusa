@@ -4,9 +4,8 @@ import { useState, useEffect, useRef, useCallback, memo } from "react";
 
 const NUMBER_OF_GRAPHICS = 7;
 const ROTATION_INTERVAL = 6000;
-const INTENSE_DURATION = 2000;
+const INTENSE_DURATION = 1000;
 
-// Improved preloading function that returns a promise
 const preloadImages = () => {
   const promises = [];
   for (let i = 1; i <= NUMBER_OF_GRAPHICS; i++) {
@@ -20,7 +19,6 @@ const preloadImages = () => {
   return Promise.all(promises);
 };
 
-// Improved image cache
 const imageCache: Record<number, HTMLImageElement> = {};
 const getImage = (src: number): Promise<HTMLImageElement> => {
   if (imageCache[src]) {
@@ -65,9 +63,11 @@ const GlitchCanvas = memo(({ src, intense }: GlitchCanvasProps) => {
       canvas.height = height + padding * 2;
 
       const context = canvas.getContext("2d");
-      if (!context) return;
 
-      // Cancel any existing animation before starting a new one
+      if (!context) {
+        return;
+      }
+
       if (animationRef.current) {
         window.cancelAnimationFrame(animationRef.current);
         animationRef.current = null;
@@ -99,7 +99,6 @@ const GlitchCanvas = memo(({ src, intense }: GlitchCanvasProps) => {
     }
   }, [src, intense]);
 
-  // Only re-render when src or intense changes
   useEffect(() => {
     renderCanvas();
 
@@ -120,14 +119,12 @@ export default function ImageGlitch() {
   const [intense, setIntense] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  // Load all images before starting the effect
   useEffect(() => {
     preloadImages().then(() => {
       setImagesLoaded(true);
     });
   }, []);
 
-  // Only start animations after images are loaded
   useEffect(() => {
     if (!imagesLoaded) return;
 
@@ -140,7 +137,6 @@ export default function ImageGlitch() {
     return () => clearInterval(interval);
   }, [imagesLoaded]);
 
-  // Synchronize the intense effect with image changes
   useEffect(() => {
     if (!imagesLoaded) return;
 
@@ -154,10 +150,8 @@ export default function ImageGlitch() {
       return timeout;
     };
 
-    // Initial effect
     const initialTimeout = handleIntenseEffect();
 
-    // Setup interval for subsequent effects
     const interval = setInterval(() => {
       handleIntenseEffect();
     }, ROTATION_INTERVAL);
@@ -169,7 +163,7 @@ export default function ImageGlitch() {
   }, [imagesLoaded]);
 
   if (!imagesLoaded) {
-    return <div className="imageGlitch loading">Loading...</div>;
+    return <div className="imageGlitch loading font-mono">Loading...</div>;
   }
 
   return (
