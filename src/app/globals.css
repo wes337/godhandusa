@@ -64,11 +64,6 @@ body.on {
   animation-fill-mode: forwards;
 }
 
-body.offReverse {
-  animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1) reverse;
-  animation-fill-mode: forwards;
-}
-
 body.off {
   animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1);
   animation-fill-mode: forwards;
@@ -121,13 +116,37 @@ body.off {
   translate: 0 -15vh;
 
   filter: drop-shadow(
-    4px 4px color-mix(in srgb, var(--color-terminal-green), transparent 50%)
+    4px 4px color-mix(in srgb, var(--color-terminal-green), transparent 75%)
   );
+}
+
+.nav {
+  translate: 0 calc(25vh + 24px);
 }
 
 @media only screen and (max-width: 1100px) {
   .imageGlitch {
     transform: scale(0.75);
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .imageGlitch {
+    transform: scale(1.2);
+  }
+
+  .nav {
+    translate: 0 calc(25vh + 40px);
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .imageGlitch {
+    transform: scale(1.5);
+  }
+
+  .nav {
+    translate: 0 calc(25vh + 40px);
   }
 }
 
