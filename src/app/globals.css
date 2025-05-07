@@ -51,10 +51,25 @@ body {
   font-family: var(--font-sans), sans-serif;
   overflow: hidden;
   max-height: -webkit-fill-available;
+
+  animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  transform: scale(0, 0.0001) translate3d(0, 0, 0);
+  -webkit-filter: brightness(50);
+  filter: brightness(50);
+  opacity: 0;
 }
 
-body::after {
-  content: " ";
+body.on {
+  animation: turn-on 1s linear;
+  animation-fill-mode: forwards;
+}
+
+body.off {
+  animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+  animation-fill-mode: forwards;
+}
+
+.overlay {
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0),
@@ -68,66 +83,22 @@ body::after {
   height: 100%;
   top: 0;
   right: 0;
-  opacity: 0.1;
+  opacity: 0.3;
   pointer-events: none;
+  z-index: 5;
 }
 
-body::before {
-  content: " ";
+.scanline {
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   right: 0;
-  background-color: #001800;
-  opacity: 0.1;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-.scanline {
-  /* animation: scroll 5s infinite alternate-reverse; */
-  background: -moz-linear-gradient(
-    top,
-    rgba(0, 221, 0, 0) 0%,
-    var(--color-terminal-green) 50%,
-    rgba(0, 221, 0, 0) 100%
-  );
-  background: -webkit-linear-gradient(
-    top,
-    rgba(0, 221, 0, 0) 0%,
-    var(--color-terminal-green) 50%,
-    rgba(0, 221, 0, 0) 100%
-  );
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 221, 0, 0) 0%,
-    var(--color-terminal-green) 50%,
-    rgba(0, 221, 0, 0) 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000dd00', endColorstr='#0000dd00',GradientType=0 );
-  display: block;
-  height: 20px;
-  opacity: 0.25;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
   z-index: 5;
   pointer-events: none;
-  height: 200%;
-
-  mix-blend-mode: color-burn;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateY(0%);
-  }
-
-  100% {
-    transform: translateY(100%);
-  }
+  background-color: var(--color-dark-green);
+  mix-blend-mode: overlay;
+  opacity: 0.25;
 }
 
 .imageGlitch {
@@ -155,25 +126,30 @@ body::before {
   }
 }
 
-.link {
-  text-shadow: 2px 2px 2px
-    color-mix(in srgb, var(--color-terminal-green), transparent 50%);
+@media only screen and (max-height: 900px) {
+  .imageGlitch {
+    transform: scale(0.75);
+  }
 }
 
-.link::before {
-  content: "[";
+.link {
+  filter: drop-shadow(
+    2px 2px 2px color-mix(in srgb, var(--color-terminal-green), transparent 50%)
+  );
 }
 
 .link::after {
   opacity: 0;
   color: color-mix(in srgb, var(--color-terminal-green), transparent 50%);
   content: " ]";
+  translate: 24px;
 }
 
 .link::before {
   opacity: 0;
   color: color-mix(in srgb, var(--color-terminal-green), transparent 50%);
   content: "[ ";
+  translate: -24px;
 }
 
 .link:hover::before,
@@ -185,4 +161,62 @@ body::before {
   text-shadow: 2px 2px 2px
     color-mix(in srgb, var(--color-terminal-green), transparent 75%);
   opacity: 0.9;
+}
+
+@keyframes turn-on {
+  0% {
+    transform: scale(1, 0.8) translate3d(0, 0, 0);
+    -webkit-filter: brightness(30);
+    filter: brightness(30);
+    opacity: 1;
+  }
+  3.5% {
+    transform: scale(1, 0.8) translate3d(0, 100%, 0);
+  }
+
+  3.6% {
+    transform: scale(1, 0.8) translate3d(0, -100%, 0);
+    opacity: 1;
+  }
+
+  9% {
+    transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+    -webkit-filter: brightness(30);
+    filter: brightness(30);
+    opacity: 0;
+  }
+
+  11% {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+    -webkit-filter: contrast(0) brightness(0);
+    filter: contrast(0) brightness(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+    -webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
+    filter: contrast(1) brightness(1.2) saturate(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes turn-off {
+  0% {
+    transform: scale(1, 1.3) translate3d(0, 0, 0);
+    -webkit-filter: brightness(1);
+    filter: brightness(1);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.3, 0.001) translate3d(0, 0, 0);
+    -webkit-filter: brightness(10);
+    filter: brightness(10);
+  }
+  100% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: scale(0, 0.0001) translate3d(0, 0, 0);
+    -webkit-filter: brightness(50);
+    filter: brightness(50);
+  }
 }

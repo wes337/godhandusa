@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Share_Tech, Share_Tech_Mono } from "next/font/google";
+import FX from "./fx";
 import "./globals.css";
 
 const shareTech = Share_Tech({
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${shareTech.variable} ${shareTechMono.variable} antialiased`}
       >
+        <FX>{children}</FX>
         {children}
       </body>
     </html>
