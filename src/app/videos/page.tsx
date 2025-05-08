@@ -6,7 +6,12 @@ import Link from "next/link";
 import Footer from "../components/footer";
 import "./videos.css";
 
-const VIDEOS = ["1.mp4", "2.mp4", "1.mp4", "2.mp4"];
+const VIDEOS = [
+  "1-smaller.mp4",
+  "2-smaller.mp4",
+  "1-smaller.mp4",
+  "2-smaller.mp4",
+];
 
 const RANDOM_PHRASES = [
   "REALITY CORRUPTION",
