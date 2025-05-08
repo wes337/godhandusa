@@ -1,8 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Tektur:wght@400..900&display=swap");
+
 @import "tailwindcss";
+
+@font-face {
+  font-family: "IBM BIOS";
+  src: url("/fonts/Web437_IBM_BIOS.woff") format("woff");
+}
 
 :root {
   /* Base colors */
-  --background: #0f0f0f;
+  --background: #000000;
   --foreground: #ffffff;
 
   /* Brand colors */
@@ -19,8 +26,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-share-tech-sans);
-  --font-mono: var(--font-share-tech-mono);
+  --font-sans: "Share Tech Mono", monospace;
+  --font-mono: "Share Tech Mono", monospace;
 
   --color-dark-blue: #0a0e15;
   --color-medium-blue: #1446a0;
@@ -33,7 +40,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f0f0f;
+    --background: #000000;
     --foreground: #ffffff;
   }
 }
@@ -52,7 +59,7 @@ body,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  font-family: "Share Tech Mono", monospace;
   overflow: hidden;
   max-height: -webkit-fill-available;
 
@@ -71,7 +78,7 @@ body.off {
   animation-fill-mode: forwards;
 }
 
-.overlay {
+.scanlines {
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0),
@@ -85,14 +92,29 @@ body.off {
   height: 100%;
   top: 0;
   right: 0;
-  opacity: 0.15;
+  opacity: 0.5;
   pointer-events: none;
   z-index: 5;
-
-  animation: animate-overlay 1s linear infinite;
+  animation: animate-scanlines 1s linear infinite;
 }
 
-@keyframes animate-overlay {
+.textureOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("/rizzo.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.05;
+  mix-blend-mode: lighten;
+  background-blend-mode: lighten;
+}
+
+@keyframes animate-scanlines {
   0% {
     background-size: 100% 0.3rem;
   }
@@ -102,24 +124,10 @@ body.off {
 }
 
 @media only screen and (max-width: 1100px) {
-  .overlay {
-    opacity: 0.25;
+  .scanlines {
+    opacity: 0.3;
     animation: none;
   }
-}
-
-.scanline {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  right: 0;
-  z-index: 5;
-  pointer-events: none;
-  background-color: var(--color-dark-green);
-  mix-blend-mode: overlay;
-  opacity: 0.25;
-  transform: scale(1) translate3d(0, 0, 0);
 }
 
 .imageGlitch {
@@ -137,44 +145,28 @@ body.off {
   translate: 0 -15vh;
 
   filter: drop-shadow(
-    4px 4px color-mix(in srgb, var(--color-terminal-green), transparent 75%)
+    4px 4px 0px color-mix(in srgb, var(--color-terminal-green), transparent 80%)
   );
 }
 
-.nav {
-  translate: 0 calc(25vh + 24px);
+.imageGlitch {
+  transform: scale(0.75);
 }
 
 @media only screen and (max-width: 1100px) {
   .imageGlitch {
-    transform: scale(0.75);
-  }
-}
-
-@media only screen and (min-width: 1600px) {
-  .imageGlitch {
-    transform: scale(1.25);
-  }
-
-  .nav {
-    translate: 0 calc(25vh + 40px);
-  }
-}
-
-@media only screen and (min-width: 2000px) {
-  .imageGlitch {
-    transform: scale(1.5);
-  }
-
-  .nav {
-    translate: 0 calc(25vh + 40px);
+    transform: scale(0.5);
   }
 }
 
 @media only screen and (max-height: 900px) {
   .imageGlitch {
-    transform: scale(0.75);
+    transform: scale(0.5);
   }
+}
+
+.nav {
+  translate: 0 calc(20vh + 24px);
 }
 
 @media only screen and (max-height: 900px) and (min-width: 600px) and (max-width: 1100px) {
@@ -184,9 +176,26 @@ body.off {
   }
 }
 
+@media only screen and (min-width: 1600px) {
+  .nav {
+    translate: 0 calc(20vh + 64px);
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .nav {
+    translate: 0 calc(25vh + 40px);
+  }
+}
+
 .link {
+  font-family: "Share Tech Mono", sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: 2px;
+  opacity: 0.8;
   filter: drop-shadow(
-    2px 2px 2px color-mix(in srgb, var(--color-terminal-green), transparent 50%)
+    1px 1px 0px color-mix(in srgb, var(--color-terminal-green), transparent 80%)
   );
 }
 
@@ -210,9 +219,12 @@ body.off {
 }
 
 .footer {
-  text-shadow: 2px 2px 2px
-    color-mix(in srgb, var(--color-terminal-green), transparent 75%);
-  opacity: 0.9;
+  text-shadow: 1px 1px 0px
+    color-mix(in srgb, var(--color-terminal-green), transparent 80%);
+  opacity: 0.8;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
 }
 
 @keyframes turn-on {

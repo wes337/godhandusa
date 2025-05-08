@@ -1,5 +1,6 @@
 import ImageGlitch from "./image-glitch";
 import NavLink from "./link";
+import Footer from "./footer";
 
 export const metadata = {
   title: "GODHANDUSA",
@@ -11,8 +12,8 @@ export default function Home() {
       <div className="mt-auto">
         <ImageGlitch />
       </div>
-      <div className="nav flex flex-col gap-2 mt-auto mb-auto translate-y-[25vh]">
-        <NavLink href="/" icon="/music.png">
+      <div className="nav flex flex-col gap-0.5 sm:gap-2 mt-auto mb-auto translate-y-[25vh]">
+        <NavLink href="/music" icon="/music.png">
           Music
         </NavLink>
         <NavLink href="/" icon="/videos.png">
@@ -25,9 +26,7 @@ export default function Home() {
           Merch
         </NavLink>
       </div>
-      <div className="footer font-mono mt-auto mb-4 text-xs uppercase text-white text-center tracking-tighter whitespace-nowrap">
-        Copyright © 2025 GODHANDUSA® All Rights Reserved
-      </div>
+      <Footer />
     </div>
   );
 }

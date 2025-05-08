@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, memo } from "react";
 
-const NUMBER_OF_GRAPHICS = 7;
+const NUMBER_OF_GRAPHICS = 1;
 const ROTATION_INTERVAL = 6000;
 const INTENSE_DURATION = 1000;
 
@@ -20,6 +20,7 @@ const preloadImages = () => {
 };
 
 const imageCache: Record<number, HTMLImageElement> = {};
+
 const getImage = (src: number): Promise<HTMLImageElement> => {
   if (imageCache[src]) {
     return Promise.resolve(imageCache[src]);
@@ -80,7 +81,7 @@ const GlitchCanvas = memo(({ src, intense }: GlitchCanvasProps) => {
         context.save();
         context.translate(padding, padding);
 
-        const a = 25;
+        const a = 30;
         const inc = intense ? 0.5 : 0.18;
 
         for (let i = 0; i < height; i++) {
@@ -126,7 +127,7 @@ export default function ImageGlitch() {
   }, []);
 
   useEffect(() => {
-    if (!imagesLoaded) return;
+    if (!imagesLoaded || NUMBER_OF_GRAPHICS === 1) return;
 
     const interval = setInterval(() => {
       setSrc((currentSrc) => {

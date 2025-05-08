@@ -1,0 +1,64 @@
+.album {
+  position: relative;
+  border: 2px solid var(--color-terminal-green);
+  text-shadow: 2px 2px 0 black;
+  padding: 16px;
+  width: 400px;
+  background-color: color-mix(
+    in srgb,
+    var(--color-dark-green),
+    transparent 75%
+  );
+  filter: saturate(0.75);
+}
+
+.album .title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  translate: 10% -14px;
+  background-color: var(--color-dark-green);
+  color: var(--color-terminal-green);
+  padding: 0 8px;
+  border: 2px solid var(--color-terminal-green);
+  font-size: 14px;
+}
+
+.album .cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  margin: 16px auto;
+  border: 2px solid var(--color-terminal-green);
+
+  img {
+    mix-blend-mode: screen;
+  }
+}
+
+.tracks {
+  scrollbar-width: thin;
+}
+
+.logo {
+  margin-top: 24px;
+  filter: drop-shadow(
+    2px 2px 0px color-mix(in srgb, var(--color-terminal-green), transparent 80%)
+  );
+
+  img {
+    height: 120px;
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .logo {
+    margin-top: 16px;
+
+    img {
+      height: 72px;
+    }
+  }
+}

@@ -1,19 +1,6 @@
 import type { Metadata } from "next";
-import { Share_Tech, Share_Tech_Mono } from "next/font/google";
 import FX from "./fx";
 import "./globals.css";
-
-const shareTech = Share_Tech({
-  variable: "--font-share-tech-sans",
-  subsets: ["latin"],
-  weight: "400",
-});
-
-const shareTechMono = Share_Tech_Mono({
-  variable: "--font-share-tech-mono",
-  subsets: ["latin"],
-  weight: "400",
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,9 +14,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${shareTech.variable} ${shareTechMono.variable} antialiased`}
-      >
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+        precedence="default"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Tektur:wght@400..900&display=swap"
+        rel="stylesheet"
+        precedence="default"
+      />
+      <body>
         <FX>{children}</FX>
         {children}
       </body>
