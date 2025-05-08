@@ -1,4 +1,4 @@
-export const ALBUMS = [
+const ALBUMS = [
   {
     title: "GODHAND VOLUME 0",
     cover: "/albums/0.jpg",
@@ -289,3 +289,5 @@ export const ALBUMS = [
     ],
   },
 ];
+
+export default ALBUMS;

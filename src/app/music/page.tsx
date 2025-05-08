@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Image from "next/image";
-import { ALBUMS } from "../data";
+import ALBUMS from "../constants/albums";
 import Link from "next/link";
-import Footer from "../footer";
+import Footer from "../components/footer";
 import "./music.css";
 
 function calculateTime(seconds: number) {
@@ -21,9 +20,7 @@ function calculateTime(seconds: number) {
 }
 
 export default function Music() {
-  const router = useRouter();
   const [currentAlbum, setCurrentAlbum] = useState(ALBUMS[0]);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const gotoPreviousAlbum = () => {
     const currentIndex = ALBUMS.findIndex(
@@ -42,22 +39,8 @@ export default function Music() {
   };
 
   return (
-    <div className="fillAvailable flex flex-col items-center justify-center">
-      <Link
-        href="#"
-        className="logo"
-        onClick={() => {
-          document.body.classList.remove("on");
-          document.body.classList.add("off");
-
-          timeoutRef.current = setTimeout(() => {
-            document.body.classList.remove("off");
-            document.body.classList.add("on");
-
-            router.push("/");
-          }, 500);
-        }}
-      >
+    <div className="music">
+      <Link href="/" className="logo">
         <Image
           src={`/hand-small.png`}
           alt="GODHANDUSA"
@@ -65,54 +48,52 @@ export default function Music() {
           height={378}
         />
       </Link>
-      <div className="mt-auto">
-        <div className="album font-mono">
-          <div className="flex">
-            <button
-              className="cursor-pointer w-[20%] text-[2rem] tracking-[-4px] text-terminal-green hover:text-white"
-              onClick={gotoPreviousAlbum}
+      <div className="albums">
+        <div className="album">
+          <div className="cover">
+            <button onClick={gotoPreviousAlbum}>&lt;&lt;</button>
+            <div
+              className="image"
+              onClick={() =>
+                window.open(
+                  `https://open.spotify.com/album/${currentAlbum.id}`,
+                  "_blank"
+                )
+              }
             >
-              &lt;&lt;
-            </button>
-            <div className="cover w-full">
               <Image src={currentAlbum.cover} alt="" width={200} height={200} />
             </div>
-            <button
-              className="cursor-pointer w-[20%] text-[2rem] tracking-[-4px] text-terminal-green hover:text-white"
-              onClick={gotoNextAlbum}
-            >
-              &gt;&gt;
-            </button>
+            <button onClick={gotoNextAlbum}>&gt;&gt;</button>
           </div>
           <div className="title">{currentAlbum.title}</div>
-          <div className="w-full text-[12px] text-right uppercase text-off-white/75 uppercase">
-            [{currentAlbum.tracks.length} Tracks]
+          <div className="details">
+            <div className="releaseDate">
+              [ONLINE {new Date(currentAlbum.releaseDate).toISOString()}]
+            </div>
+            <div className="spacing">-----</div>
+            <div className="trackCount">
+              [{currentAlbum.tracks.length} Tracks]
+            </div>
           </div>
-          <div className="tracks h-[30vh] overflow-auto">
+          <div className="tracks">
             {currentAlbum.tracks.map((track) => {
               return (
                 <Link
                   key={track.id}
-                  className="w-full flex cursor-pointer focus:bg-terminal-green/10 hover:bg-terminal-green/10"
+                  className="track"
                   href={`https://open.spotify.com/track/${track.id}`}
                   target="_blank"
                 >
-                  <div className="w-[40px] text-terminal-green">
-                    {track.trackNo}
-                  </div>
-                  <div className="w-[256px] text-[14px] leading-[24px] whitespace-nowrap overflow-hidden text-ellipsis tracking-tighter">
-                    {track.title}
-                  </div>
-                  <div className="ml-auto text-off-white/75 text-[12px] leading-[24px]">
+                  <div className="trackNumber">{track.trackNo}</div>
+                  <div className="trackTitle">{track.title}</div>
+                  <div className="duration">
                     {calculateTime(track.durationMS / 1000)}
                   </div>
                 </Link>
               );
             })}
           </div>
-          <div className="w-full border-t-1 mt-1 pt-1 border-off-white/25 uppercase text-xs text-off-white/50 text-right">
-            [End of System Input]
-          </div>
+          <div className="flair">[End of System Input]</div>
         </div>
       </div>
       <Footer />

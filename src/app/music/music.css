@@ -1,64 +1,188 @@
+.music {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: -webkit-fill-available;
+
+  --album-width: 400px;
+  --logo-size: 120px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .music {
+    --album-width: 340px;
+    --logo-size: 80px;
+  }
+}
+
+.logo {
+  height: var(--logo-size);
+  margin: auto;
+  padding: 16px;
+  margin-bottom: 24px;
+  filter: drop-shadow(2px 2px 0px var(--color-terminal-green-50));
+  opacity: 0.75;
+}
+
+.logo img {
+  height: 100%;
+  width: auto;
+}
+
+.logo:hover {
+  opacity: 1;
+}
+
+.albums {
+  width: var(--album-width);
+  margin: auto;
+  background-color: var(--color-terminal-green-5);
+}
+
 .album {
   position: relative;
   border: 2px solid var(--color-terminal-green);
-  text-shadow: 2px 2px 0 black;
-  padding: 16px;
-  width: 400px;
-  background-color: color-mix(
-    in srgb,
-    var(--color-dark-green),
-    transparent 75%
-  );
+  padding: 24px 8px;
   filter: saturate(0.75);
+  box-shadow: 2px 2px 0 var(--color-terminal-green-50);
 }
 
-.album .title {
+.album .cover {
+  display: flex;
+}
+
+.album .cover .image {
+  width: calc(var(--album-width) / 2);
+  height: calc(var(--album-width) / 2);
+}
+
+.album .cover .image img {
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+.album .cover button {
+  all: unset;
+  cursor: pointer;
+  font-size: 32px;
+  letter-spacing: -4px;
+  margin: auto;
+  height: calc(var(--album-width) / 2);
+  text-align: center;
+  user-select: none;
+  color: var(--color-terminal-green);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-10);
+}
+
+.album .cover button:hover {
+  color: var(--color-gold);
+}
+
+.album .image {
+  display: flex;
+  width: 100%;
+  border: 2px solid var(--color-terminal-green);
+}
+
+.title {
   position: absolute;
   top: 0;
   left: 0;
   translate: 10% -14px;
   background-color: var(--color-dark-green);
   color: var(--color-terminal-green);
-  padding: 0 8px;
+  padding: 4px 8px;
   border: 2px solid var(--color-terminal-green);
   font-size: 14px;
+  box-shadow: 2px 2px 0 var(--color-terminal-green-50);
+  user-select: none;
 }
 
-.album .cover {
+.details {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: max-content;
-  margin: 16px auto;
-  border: 2px solid var(--color-terminal-green);
+  justify-content: space-between;
+  height: 14px;
+  font-size: 12px;
+  line-height: 1;
+  padding: 8px 0;
+  color: var(--color-off-white);
+  opacity: 0.75;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 2px 2px 0 var(--color-terminal-green-10);
+  letter-spacing: -0.5px;
+}
 
-  img {
-    mix-blend-mode: screen;
-  }
+.spacing {
+  color: var(--color-terminal-green);
+}
+
+.releaseDate {
+  color: var(--color-gold);
+  font-size: 12px;
+}
+
+.trackCount {
+  opacity: 0.75;
 }
 
 .tracks {
-  scrollbar-width: thin;
+  height: 320px;
+  overflow: auto;
+  scrollbar-width: none;
+  background-color: var(--color-black-25);
+  border: 2px solid var(--color-terminal-green-25);
 }
 
-.logo {
-  margin-top: 24px;
-  filter: drop-shadow(
-    2px 2px 0px color-mix(in srgb, var(--color-terminal-green), transparent 80%)
-  );
-
-  img {
-    height: 120px;
-    width: auto;
-  }
+.track {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  font-size: 14px;
+  line-height: 1;
+  text-shadow: 2px 2px 0 var(--color-terminal-green-10);
+  letter-spacing: -0.5px;
 }
 
-@media only screen and (max-width: 1100px) {
-  .logo {
-    margin-top: 16px;
+.track:hover {
+  background-color: var(--color-terminal-green-10);
+}
 
-    img {
-      height: 72px;
-    }
-  }
+.track:hover .trackTitle {
+  color: var(--color-terminal-green);
+}
+
+.track .trackNumber {
+  color: var(--color-terminal-green);
+  width: 32px;
+}
+
+.track .trackTitle {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track .duration {
+  font-size: 12px;
+  margin-left: auto;
+  text-align: right;
+  opacity: 0.75;
+}
+
+.flair {
+  display: flex;
+  align-items: center;
+  line-height: 10px;
+  padding: 4px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--color-terminal-green);
+  background-color: var(--color-terminal-green-25);
+  justify-content: flex-end;
 }

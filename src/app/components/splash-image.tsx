@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback, memo } from "react";
+import "./splash-image.css";
 
 const NUMBER_OF_GRAPHICS = 1;
 const ROTATION_INTERVAL = 6000;
@@ -36,13 +37,13 @@ const getImage = (src: number): Promise<HTMLImageElement> => {
   });
 };
 
-interface GlitchCanvasProps {
+interface SplashImageCanvasProps {
   src: number;
   intense: boolean;
   maxDisplacement?: number;
 }
 
-const GlitchCanvas = memo(({ src, intense }: GlitchCanvasProps) => {
+const SplashImageCanvas = memo(({ src, intense }: SplashImageCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number | null>(null);
   const isRenderingRef = useRef<boolean>(false);
@@ -113,9 +114,9 @@ const GlitchCanvas = memo(({ src, intense }: GlitchCanvasProps) => {
   return <canvas ref={canvasRef} />;
 });
 
-GlitchCanvas.displayName = "GlitchCanvas";
+SplashImageCanvas.displayName = "SplashImageCanvas";
 
-export default function ImageGlitch() {
+export default function SplashImage() {
   const [src, setSrc] = useState(7);
   const [intense, setIntense] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -164,12 +165,12 @@ export default function ImageGlitch() {
   }, [imagesLoaded]);
 
   if (!imagesLoaded) {
-    return <div className="imageGlitch loading font-mono">Loading...</div>;
+    return <div className="splashImage">Loading...</div>;
   }
 
   return (
-    <div className={`imageGlitch ${intense ? "opacity-50" : "opacity-75"}`}>
-      <GlitchCanvas src={src} intense={intense} />
+    <div className={`splashImage${intense ? " intense" : ""}`}>
+      <SplashImageCanvas src={src} intense={intense} />
     </div>
   );
 }

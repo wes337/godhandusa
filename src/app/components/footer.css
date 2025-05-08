@@ -1,0 +1,10 @@
+.footer {
+  font-size: 12px;
+  line-height: 1;
+  color: var(--color-terminal-green);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  text-align: center;
+  white-space: nowrap;
+  padding: 16px 0;
+  text-transform: uppercase;
+}
