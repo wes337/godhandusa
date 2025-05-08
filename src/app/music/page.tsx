@@ -20,7 +20,7 @@ function calculateTime(seconds: number) {
 }
 
 export default function Music() {
-  const [currentAlbum, setCurrentAlbum] = useState(ALBUMS[0]);
+  const [currentAlbum, setCurrentAlbum] = useState(ALBUMS[2]);
 
   const gotoPreviousAlbum = () => {
     const currentIndex = ALBUMS.findIndex(

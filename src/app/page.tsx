@@ -14,7 +14,7 @@ export default function Home() {
       <div className="nav">
         <Link href="/music">Music</Link>
         <Link href="/videos">Videos</Link>
-        <Link href="/">Shows</Link>
+        <Link href="/shows">Shows</Link>
         <Link href="/">Merch</Link>
       </div>
       <Footer />

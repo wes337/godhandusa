@@ -4,6 +4,7 @@
   --background: #000000;
   --foreground: #ffffff;
 
+  --color-black: #000000;
   --color-dark-blue: #0a0e15;
   --color-dark-green: #001800;
   --color-medium-blue: #1446a0;
@@ -17,9 +18,14 @@
     var(--color-off-white),
     transparent 95%
   );
-  --color-gold: #ffb703;
-  --color-orange: #fb8500;
+  --color-gold: #f0c05a;
+  --color-orange: #bf9b30;
   --color-red: #ff003c;
+  --color-dark-red: color-mix(
+    in srgb,
+    var(--color-red),
+    var(--color-black) 80%
+  );
   --color-terminal-green: #00ff6a;
   --color-terminal-green-5: color-mix(
     in srgb,
@@ -41,8 +47,18 @@
     var(--color-terminal-green),
     transparent 50%
   );
+  --color-dark-green-50: color-mix(
+    in srgb,
+    var(--color-dark-green),
+    transparent 50%
+  );
+  --color-orange-50: color-mix(in srgb, var(--color-orange), transparent 50%);
+  --color-dark-blue-50: color-mix(
+    in srgb,
+    var(--color-dark-blue),
+    transparent 50%
+  );
 
-  --color-black: #000000;
   --color-black-25: color-mix(in srgb, var(--color-black), transparent 75%);
   --color-black-50: color-mix(in srgb, var(--color-black), transparent 50%);
 
