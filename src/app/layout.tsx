@@ -5,6 +5,7 @@ import "./globals.css";
 
 const shareTechMono = Share_Tech_Mono({
   variable: "--font-share-tech-mono",
+  subsets: ["latin"],
   weight: "400",
 });
 
