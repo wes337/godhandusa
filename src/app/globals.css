@@ -7,6 +7,10 @@
   --color-dark-blue: #0a0e15;
   --color-dark-green: #001800;
   --color-medium-blue: #1446a0;
+  --color-purple: #8a00ff;
+  --color-blue: #00b8ff;
+  --color-gray: #b3b3b3;
+  --color-white: #ffffff;
   --color-off-white: #f1f1f1;
   --color-off-white-5: color-mix(
     in srgb,
@@ -15,7 +19,7 @@
   );
   --color-gold: #ffb703;
   --color-orange: #fb8500;
-  --color-accent-red: #e94560;
+  --color-red: #ff003c;
   --color-terminal-green: #00ff6a;
   --color-terminal-green-5: color-mix(
     in srgb,

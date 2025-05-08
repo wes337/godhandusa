@@ -13,7 +13,7 @@ export default function Home() {
       <SplashImage />
       <div className="nav">
         <Link href="/music">Music</Link>
-        <Link href="/">Videos</Link>
+        <Link href="/videos">Videos</Link>
         <Link href="/">Shows</Link>
         <Link href="/">Merch</Link>
       </div>
