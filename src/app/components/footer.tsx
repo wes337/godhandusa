@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import SVG from "react-inlinesvg";
 import "./footer.css";
 
 const MESSAGES = [
@@ -10,10 +11,15 @@ const MESSAGES = [
   { pre: "Porch", post: "Hopped Off" },
   { pre: "Bed Status", post: "Shit-covered" },
   { pre: "Fngr Posn", post: "Trigger" },
-  { pre: "Whps Rdn", post: "28221" },
+  { pre: "Whps Rdn", post: Math.round(Math.random() * 1000) },
   { pre: "Pockets", post: "Over-Encumbered" },
   { pre: "Smck lvls", post: "Talked" },
   { pre: "Games Played", post: "0" },
+  { pre: "Uh huh", post: "huh" },
+  { pre: "Eating", post: "Good" },
+  { pre: "Loc", post: "Outside" },
+  { pre: "Money", post: "Need sum mo" },
+  { pre: "Bitches Stomped", post: Math.round(Math.random() * 1000) },
 ];
 
 function getCurrentTime() {
@@ -24,11 +30,16 @@ function getCurrentTime() {
   return `${hours}:${minutes}:${seconds}`;
 }
 
+function randomNumberBetween(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 export default function Footer() {
   const pathname = usePathname();
   const [message, setMessage] = useState(0);
   const [time, setTime] = useState(getCurrentTime());
   const [showExtras, setShowExtras] = useState(false);
+  const [speed, setSpeed] = useState("fast");
 
   useEffect(() => {
     setShowExtras(pathname === "/");
@@ -55,6 +66,16 @@ export default function Footer() {
 
         return nextMessage;
       });
+
+      const random = randomNumberBetween(1, 3);
+
+      if (random === 1) {
+        setSpeed("slow");
+      } else if (random === 2) {
+        setSpeed("medium");
+      } else {
+        setSpeed("fast");
+      }
     }, 5000);
 
     return () => {
@@ -80,10 +101,13 @@ export default function Footer() {
         <div className="time">
           System Time: <span>{time}</span>
         </div>
-        <div className="date">[{new Date().toUTCString()}]</div>
+        <div className="date">[{new Date().toISOString()}]</div>
         <div className="message">
           <div className="pre">{MESSAGES[message].pre}</div>
           <div className="post">{MESSAGES[message].post}</div>
+          <div className={`icon ${speed}`}>
+            <SVG src={`/solid-speed-${speed}.svg`} width={16} height={16} />
+          </div>
         </div>
       </div>
     </div>

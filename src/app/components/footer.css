@@ -120,6 +120,7 @@
   justify-content: center;
   text-align: center;
   padding: 4px;
+  margin-right: 16px;
 }
 
 .footer .links {
@@ -131,4 +132,25 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.footer .message .icon {
+  position: absolute;
+  bottom: 0;
+  right: 2px;
+  image-rendering: pixelated;
+  filter: drop-shadow(2px 2px 0 var(--color-black-50));
+  opacity: 0.75;
+}
+
+.footer .message .icon.fast svg path {
+  fill: var(--color-terminal-green);
+}
+
+.footer .message .icon.medium svg path {
+  fill: var(--color-gold);
+}
+
+.footer .message .icon.slow svg path {
+  fill: var(--color-red);
 }
