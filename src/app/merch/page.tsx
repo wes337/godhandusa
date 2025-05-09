@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import SHOWS from "../constants/shows";
 import Link from "next/link";
 import Footer from "../components/footer";
 import "./merch.css";
@@ -23,21 +22,6 @@ export default function Merch() {
         <MerchItem />
         <MerchItem />
         <MerchItem />
-        {/* {SHOWS.map((show, index) => {
-          return (
-            <button key={index} className="show">
-              <div className="location">
-                <span className="city">{show.city}</span>
-                <span className="venue">{show.venue}</span>
-              </div>
-              <div className="date">{show.date}</div>
-              <div className="tickets">
-                <span>Get</span>
-                <span>Tickets</span>
-              </div>
-            </button>
-          );
-        })} */}
       </div>
       <Footer />
     </div>
