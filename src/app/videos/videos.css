@@ -111,12 +111,14 @@
 
 .videos .grid .video .preview {
   position: absolute;
-  top: 22px;
+  top: 0;
   left: 0;
+  translate: 0 21px;
   width: var(--video-width);
-  height: var(--video-height);
+  height: calc(var(--video-height) + 8px);
   object-fit: cover;
   filter: grayscale(1);
+  z-index: 0;
 }
 
 .videos .video .header {
@@ -143,6 +145,7 @@
 }
 
 .videos .video .footer {
+  position: relative;
   display: flex;
   align-items: center;
   font-size: 12px;
@@ -151,7 +154,12 @@
   color: color-mix(in srgb, var(--color-red), transparent 50%);
   border-top: 1px solid var(--color-terminal-green-50);
   text-shadow: 2px 2px 0 var(--color-accent-black);
-  background-color: var(--color-black-50);
+  background-color: color-mix(
+    in srgb,
+    var(--color-terminal-green),
+    var(--color-black) 98%
+  );
+  z-index: 1;
 }
 
 .videos .video .footer .timestamp {

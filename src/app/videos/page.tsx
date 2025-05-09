@@ -153,10 +153,7 @@ function Video({
     let timeout: NodeJS.Timeout;
 
     const interval = setInterval(() => {
-      if (randomNumberBetween(1, 3) === 3) {
-        setPreview(randomNumberBetween(1, 2));
-      }
-
+      setPreview(randomNumberBetween(1, 2));
       setShowStatic(true);
 
       timeout = setTimeout(() => {
@@ -232,6 +229,7 @@ function Video({
       />
       <Image
         className="preview"
+        key={preview}
         src={`/videos/${video.id}-${preview}.gif`}
         alt=""
         width={320}
