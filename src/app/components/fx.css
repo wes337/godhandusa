@@ -39,6 +39,10 @@
     opacity: 0.3;
     animation: animateScanLinesMobile 1s linear infinite alternate;
   }
+
+  .textureOverlay {
+    opacity: 0.1;
+  }
 }
 
 @keyframes animateScanLines {
