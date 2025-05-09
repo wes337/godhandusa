@@ -15,7 +15,7 @@ export default function Home() {
         <Link href="/music">Music</Link>
         <Link href="/videos">Videos</Link>
         <Link href="/shows">Shows</Link>
-        <Link href="/">Merch</Link>
+        <Link href="/merch">Merch</Link>
       </div>
       <Footer />
     </div>

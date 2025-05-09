@@ -1,0 +1,236 @@
+.merch {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: -webkit-fill-available;
+
+  --logo-size: 120px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .merch {
+    --logo-size: 80px;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .merch {
+  }
+}
+
+.merch .logo {
+  height: var(--logo-size);
+  margin: 0 auto;
+  padding: 16px;
+  margin-bottom: 24px;
+  filter: drop-shadow(2px 2px 0px var(--color-terminal-green-50));
+  opacity: 0.75;
+}
+
+.merch .logo img {
+  height: 100%;
+  width: auto;
+}
+
+.merch .logo:hover {
+  opacity: 1;
+}
+
+.merch .list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  margin: auto;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .merch .list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.merch .merchItem {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-terminal-green-5);
+  border: 2px solid var(--color-terminal-green-50);
+  box-shadow: 4px 4px 0 var(--color-terminal-green-25);
+  filter: saturate(0.75);
+  width: 360px;
+}
+
+.merch .merchItem:hover,
+.merch .merchItem:focus {
+  z-index: 5;
+}
+
+.merch .merchItem .image {
+  position: relative;
+  display: flex;
+  padding: 8px;
+  background-color: var(--color-black-50);
+  height: 100%;
+  width: 344px;
+  height: 430px;
+  cursor: pointer;
+}
+
+.merch .merchItem .image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.merch .merchItem .image img.show {
+  opacity: 1;
+}
+
+.merch .merchItem .image button {
+  all: unset;
+  cursor: pointer;
+  width: 100%;
+  font-size: 32px;
+  letter-spacing: -4px;
+  user-select: none;
+  color: var(--color-terminal-green);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-50);
+  margin: auto;
+  z-index: 1;
+  height: 100%;
+  text-align: center;
+  width: 80px;
+  translate: -48px;
+}
+
+.merch .merchItem .image button:last-child {
+  translate: 48px;
+}
+
+.merch .merchItem .image button:hover {
+  color: var(--color-gold);
+  text-shadow: 2px 2px 0 var(--color-orange);
+}
+
+.merch .merchItem .title {
+  color: var(--color-off-white);
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.merch .merchItem .header {
+  display: flex;
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  border-bottom: 2px solid var(--color-terminal-green-50);
+  background-color: var(--color-terminal-green-5);
+  padding: 4px;
+}
+
+.merch .merchItem .footer {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--color-terminal-green-10);
+  border-top: 2px solid var(--color-terminal-green-50);
+  padding: 4px 0;
+  font-size: 16px;
+  letter-spacing: -1px;
+}
+
+.merch .merchItem .footer .label {
+  margin-left: 4px;
+}
+
+.merch .merchItem .header .price {
+  margin-left: auto;
+  margin-right: 4px;
+  color: var(--color-gold);
+  text-shadow: 2px 2px 0
+    color-mix(in srgb, var(--color-orange) 50%, var(--color-black));
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.merch .merchItem .header .price::before {
+  content: "> ";
+  color: var(--color-gold);
+  text-shadow: 2px 2px 0
+    color-mix(in srgb, var(--color-orange) 50%, var(--color-black));
+}
+
+.merch .merchItem .footer .buttons {
+  display: flex;
+  margin-left: auto;
+}
+
+.merch .merchItem .footer .buttons button {
+  all: unset;
+  cursor: pointer;
+  color: var(--color-white);
+  text-shadow: 2px 2px 0
+    color-mix(in srgb, var(--color-blue) 50%, var(--color-black));
+  width: 100%;
+  padding: 0 8px;
+  font-weight: 700;
+}
+
+.merch .merchItem .footer .buttons button:before {
+  content: "[";
+  color: var(--color-terminal-green-50);
+}
+
+.merch .merchItem .footer .buttons button:after {
+  content: "]";
+  color: var(--color-terminal-green-50);
+}
+
+.merch .merchItem .footer .buttons button:hover {
+  background-color: var(--color-off-white-10);
+}
+
+.merch .previewImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-black-75);
+  z-index: 5;
+}
+
+.merch .previewImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.merch .previewImage .close {
+  all: unset;
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 16px;
+  font-size: 24px;
+  text-transform: uppercase;
+  color: var(--color-white);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.merch .previewImage .close:hover {
+  background-color: var(--color-off-white-10);
+}
+
+.merch .previewImage .close:before {
+  content: "[ ";
+  color: var(--color-red);
+}
+
+.merch .previewImage .close:after {
+  content: " ]";
+  color: var(--color-red);
+}

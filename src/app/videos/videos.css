@@ -145,9 +145,10 @@
   color: var(--color-orange);
 }
 
-.videos .video .footer {
+.videos .video .videoFooter {
   position: relative;
   display: flex;
+  flex-direction: row;
   align-items: center;
   font-size: 12px;
   line-height: 1;
@@ -163,14 +164,14 @@
   z-index: 1;
 }
 
-.videos .video .footer .timestamp {
+.videos .video .videoFooter .timestamp {
   color: var(--color-off-white);
   margin-left: auto;
   width: 80px;
   text-align: right;
 }
 
-.videos .video .footer .percent {
+.videos .video .videoFooter .percent {
   color: var(--color-off-white);
   opacity: 0.5;
   margin-left: 8px;
@@ -178,7 +179,7 @@
 
 @media only screen and (min-width: 2000px) {
   .videos .video .header,
-  .videos .video .footer {
+  .videos .video .videoFooter {
     font-size: 14px;
   }
 }

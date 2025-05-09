@@ -18,6 +18,11 @@
     var(--color-off-white),
     transparent 95%
   );
+  --color-off-white-10: color-mix(
+    in srgb,
+    var(--color-off-white),
+    transparent 90%
+  );
   --color-gold: #f0c05a;
   --color-orange: #bf9b30;
   --color-red: #ff003c;
@@ -61,6 +66,7 @@
 
   --color-black-25: color-mix(in srgb, var(--color-black), transparent 75%);
   --color-black-50: color-mix(in srgb, var(--color-black), transparent 50%);
+  --color-black-75: color-mix(in srgb, var(--color-black), transparent 25%);
 
   --splash-image-width: 473px;
   --splash-image-height: 549px;

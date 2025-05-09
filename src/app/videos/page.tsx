@@ -235,7 +235,7 @@ function Video({
         width={320}
         height={240}
       />
-      <div className="footer">
+      <div className="videoFooter">
         <div className="phrase">&gt; {phrase}</div>
         <div className="timestamp">&gt; {random}</div>
         <div className="percent">[{percent}%]</div>
