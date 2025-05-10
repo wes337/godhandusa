@@ -20,6 +20,21 @@ export default function Merch() {
   const [cartOpen, setCartOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any>(null);
 
+  const onChangeItem = (item) => {
+    const event = new CustomEvent("showstatic");
+    document.dispatchEvent(event);
+
+    const timeout = setTimeout(() => {
+      const event = new CustomEvent("hidestatic");
+      document.dispatchEvent(event);
+      setSelectedItem(item);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  };
+
   return (
     <div className="merch">
       <Link href="/" className="logo">
@@ -31,16 +46,16 @@ export default function Merch() {
         />
       </Link>
       <div className="list">
-        <MerchListItem onClick={() => setSelectedItem({})} />
-        <MerchListItem onClick={() => setSelectedItem({})} />
-        <MerchListItem onClick={() => setSelectedItem({})} />
-        <MerchListItem onClick={() => setSelectedItem({})} />
+        <MerchListItem onClick={() => onChangeItem({})} />
+        <MerchListItem onClick={() => onChangeItem({})} />
+        <MerchListItem onClick={() => onChangeItem({})} />
+        <MerchListItem onClick={() => onChangeItem({})} />
       </div>
       <ShoppingCart open={cartOpen} setOpen={setCartOpen} />
       {selectedItem && (
         <MerchItemModal
           // item={selectedItem}
-          onClose={() => setSelectedItem(null)}
+          onClose={() => onChangeItem(null)}
         />
       )}
       <Footer />

@@ -38,18 +38,25 @@ function randomNumberBetween(min: number, max: number) {
 export default function Footer() {
   const pathname = usePathname();
   const [message, setMessage] = useState(0);
-  const [time, setTime] = useState(getCurrentTime());
+  const [time, setTime] = useState("");
   const [showExtras, setShowExtras] = useState(false);
+  const [showBackButton, setShowBackButton] = useState(false);
   const [speed, setSpeed] = useState("fast");
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     setShowExtras(pathname === "/");
+    setShowBackButton(pathname !== "/");
   }, [pathname]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getCurrentTime());
+      setDate(new Date().toISOString());
     }, 1000);
+
+    setTime(getCurrentTime());
+    setDate(new Date().toISOString());
 
     return () => {
       clearInterval(interval);
@@ -84,11 +91,9 @@ export default function Footer() {
     };
   }, []);
 
-  const showBack = pathname !== "/";
-
   return (
     <>
-      {showBack && (
+      {showBackButton && (
         <Link className="backButton" href="/">
           Return
         </Link>
@@ -110,7 +115,7 @@ export default function Footer() {
           <div className="time">
             System Time: <span>{time}</span>
           </div>
-          <div className="date">[{new Date().toISOString()}]</div>
+          <div className="date">[{date}]</div>
           <div className="message">
             <div className="pre">{MESSAGES[message].pre}</div>
             <div className="post">{MESSAGES[message].post}</div>

@@ -50,12 +50,12 @@ export default function Static() {
       setShow(false);
     };
 
-    window.addEventListener("showstatic", onShowStatic);
-    window.addEventListener("hidestatic", onHideStatic);
+    document.addEventListener("showstatic", onShowStatic);
+    document.addEventListener("hidestatic", onHideStatic);
 
     return () => {
-      window.removeEventListener("showstatic", onShowStatic);
-      window.removeEventListener("hidestatic", onShowStatic);
+      document.removeEventListener("showstatic", onShowStatic);
+      document.removeEventListener("hidestatic", onShowStatic);
     };
   }, []);
 
