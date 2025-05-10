@@ -154,3 +154,35 @@
 .footer .message .icon.slow svg path {
   fill: var(--color-red);
 }
+
+.backButton {
+  all: unset;
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  margin: 8px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px;
+  color: var(--color-terminal-green);
+  text-shadow: 1px 1px var(--color-terminal-green-50);
+}
+
+.backButton::before {
+  content: "<<";
+  letter-spacing: -2px;
+  color: var(--color-terminal-green);
+}
+
+.backButton:hover {
+  color: var(--color-white);
+  background-color: var(--color-terminal-green-25);
+  box-shadow: 2px 2px 0 var(--color-terminal-green-10);
+}

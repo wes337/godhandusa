@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import SVG from "react-inlinesvg";
 import "./footer.css";
+import Link from "next/link";
 
 const MESSAGES = [
   { pre: "Grlfrnd Status", post: "Pregnant" },
@@ -83,33 +84,42 @@ export default function Footer() {
     };
   }, []);
 
+  const showBack = pathname !== "/";
+
   return (
-    <div className="footer">
-      {showExtras && (
-        <div className="links">
-          <div className="label">LNKS</div>
-          <div className="bracket">[</div>
-          <div className="link">IG</div>
-          <div className="link">YT</div>
-          <div className="link">SPFY</div>
-          <div className="link">SC</div>
-          <div className="bracket">]</div>
-        </div>
+    <>
+      {showBack && (
+        <Link className="backButton" href="/">
+          Return
+        </Link>
       )}
-      <div className="legal">℗ 2025 Eye and Hand Society</div>
-      <div className="statusBar">
-        <div className="time">
-          System Time: <span>{time}</span>
-        </div>
-        <div className="date">[{new Date().toISOString()}]</div>
-        <div className="message">
-          <div className="pre">{MESSAGES[message].pre}</div>
-          <div className="post">{MESSAGES[message].post}</div>
-          <div className={`icon ${speed}`}>
-            <SVG src={`/solid-speed-${speed}.svg`} width={16} height={16} />
+      <div className="footer">
+        {showExtras && (
+          <div className="links">
+            <div className="label">LNKS</div>
+            <div className="bracket">[</div>
+            <div className="link">IG</div>
+            <div className="link">YT</div>
+            <div className="link">SPFY</div>
+            <div className="link">SC</div>
+            <div className="bracket">]</div>
+          </div>
+        )}
+        <div className="legal">℗ 2025 Eye and Hand Society</div>
+        <div className="statusBar">
+          <div className="time">
+            System Time: <span>{time}</span>
+          </div>
+          <div className="date">[{new Date().toISOString()}]</div>
+          <div className="message">
+            <div className="pre">{MESSAGES[message].pre}</div>
+            <div className="post">{MESSAGES[message].post}</div>
+            <div className={`icon ${speed}`}>
+              <SVG src={`/solid-speed-${speed}.svg`} width={16} height={16} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

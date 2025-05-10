@@ -8,7 +8,7 @@ const ROTATION_INTERVAL = 6000;
 const INTENSE_DURATION = 1000;
 
 const preloadImages = () => {
-  const promises = [];
+  const promises: any[] = [];
   for (let i = 1; i <= NUMBER_OF_GRAPHICS; i++) {
     const img = new Image();
     const promise = new Promise((resolve) => {

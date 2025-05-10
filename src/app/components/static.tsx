@@ -94,10 +94,10 @@ export default function Static() {
       w: number,
       h: number
     ) => {
-      const intensity = [];
+      const intensity: any[] = [];
       const factor = h / 50;
       const trans = 1 - Math.random() * 0.05;
-      const intensityCurve = [];
+      const intensityCurve: any[] = [];
 
       for (var i = 0; i < Math.floor(h / factor) + factor; i++) {
         intensityCurve.push(Math.floor(Math.random() * 15));

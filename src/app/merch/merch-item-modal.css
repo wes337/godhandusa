@@ -1,0 +1,287 @@
+.merchItemModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 80%;
+  translate: -50% -50%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  background-color: color-mix(
+    in srgb,
+    var(--color-terminal-green) 5%,
+    var(--color-black)
+  );
+  border: 2px solid var(--color-terminal-green-50);
+  box-shadow: 4px 4px 0 var(--color-terminal-green-25);
+}
+
+@media only screen and (max-width: 1100px) {
+  .merchItemModal {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    translate: 0;
+    border: 0;
+    box-shadow: 0;
+  }
+}
+
+.merchItemModalHeader {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  padding: 8px;
+  border-bottom: 2px solid var(--color-terminal-green-50);
+  background-color: color-mix(
+    in srgb,
+    var(--color-terminal-green) 15%,
+    var(--color-black)
+  );
+}
+
+.merchItemModalHeader .title {
+  color: var(--color-terminal-green);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+}
+
+.merchItemModalHeader .closeModal {
+  all: unset;
+  cursor: pointer;
+  margin-left: auto;
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+}
+
+.merchItemModalHeader .closeModal:hover {
+  background-color: var(--color-off-white-10);
+}
+
+.merchItemModalHeader .closeModal::before {
+  content: "[ ";
+  color: var(--color-red);
+  text-shadow: 2px 2px 0 var(--color-dark-red);
+}
+
+.merchItemModalHeader .closeModal::after {
+  content: " ]";
+  color: var(--color-red);
+  text-shadow: 2px 2px 0 var(--color-dark-red);
+}
+
+.merchItemModalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-black-75);
+  z-index: 2;
+}
+
+.merchItemModalBody {
+  height: 100%;
+}
+
+.merchItemModalBody .image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 110px);
+  width: 100%;
+
+  background-color: var(--color-black-50);
+}
+
+.merchItemModalBody .image button {
+  all: unset;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  font-size: 32px;
+  letter-spacing: -2px;
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  color: var(--color-terminal-green-50);
+  z-index: 1;
+  text-align: left;
+  padding-left: 48px;
+  padding-right: 0;
+}
+
+.merchItemModalBody .image button:last-child {
+  text-align: right;
+  padding-left: 0;
+  padding-right: 48px;
+}
+
+.merchItemModalBody .image button:hover {
+  color: var(--color-white);
+}
+
+.merchItemModalBody .image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  opacity: 0;
+}
+
+@media only screen and (max-width: 1100px) {
+  .merchItemModalBody .image button {
+    padding-left: 24px;
+  }
+
+  .merchItemModalBody .image button:last-child {
+    padding-right: 24px;
+  }
+}
+
+.merchItemModalBody .image img.show {
+  opacity: 1;
+}
+
+.merchItemModalBody .details {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-top: 2px solid var(--color-terminal-green-50);
+  border-bottom: 2px solid var(--color-terminal-green-50);
+}
+
+.merchItemModalBody .details .price {
+  margin-left: auto;
+  font-size: 24px;
+  color: var(--color-gold);
+  text-shadow: 2px 2px 0 var(--color-black-50);
+}
+
+.merchItemModalBody .details .sizeButton {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  height: 24px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 var(--color-terminal-green-10);
+  background-color: var(--color-off-white-5);
+  width: 128px;
+}
+
+.merchItemModalBody .details .sizeButton:hover {
+  color: var(--color-white);
+  background-color: var(--color-terminal-green-25);
+}
+
+.merchItemModalBody .details .sizes {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-black);
+  border: 2px solid var(--color-terminal-green);
+  width: 128px;
+  z-index: 1;
+}
+
+.merchItemModalBody .details .sizes button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.merchItemModalBody .details .sizes button::before {
+  content: "[";
+  color: var(--color-terminal-green);
+  opacity: 0;
+}
+
+.merchItemModalBody .details .sizes button::after {
+  content: "]";
+  color: var(--color-terminal-green);
+  opacity: 0;
+}
+
+.merchItemModalBody .details .sizes button:hover {
+  color: var(--color-white);
+  background-color: var(--color-terminal-green-25);
+}
+
+.merchItemModalBody .details .sizes button:hover::before {
+  opacity: 1;
+}
+
+.merchItemModalBody .details .sizes button:hover::after {
+  opacity: 1;
+}
+
+.merchItemModalBody .buttons {
+  display: flex;
+  margin-left: auto;
+  background-color: var(--color-off-white-5);
+}
+
+.merchItemModalBody .buttons button {
+  all: unset;
+  cursor: pointer;
+  color: var(--color-white);
+  text-shadow: 2px 2px 0
+    color-mix(in srgb, var(--color-blue) 50%, var(--color-black));
+  width: 100%;
+  padding: 16px;
+  font-weight: 700;
+  text-align: center;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.merchItemModalBody .buttons button:before {
+  content: "[";
+  color: var(--color-terminal-green-50);
+}
+
+.merchItemModalBody .buttons button:after {
+  content: "]";
+  color: var(--color-terminal-green-50);
+}
+
+.merchItemModalBody .buttons button:hover {
+  background-color: var(--color-off-white-10);
+}
+
+@media only screen and (max-width: 1100px) {
+  .merchItemModalBody .buttons button {
+    white-space: nowrap;
+    letter-spacing: -1px;
+  }
+}
+
+.merchItemModalBody .sizeButton.error {
+  animation: sizeError 0.5s step-start 0s infinite;
+}
+
+@keyframes sizeError {
+  50% {
+    color: var(--color-red);
+    text-shadow: 2px 2px 0 var(--color-dark-red);
+    background-color: color-mix(
+      in srgb,
+      var(--color-dark-red),
+      transparent 50%
+    );
+    outline: 2px solid var(--color-red);
+    outline-offset: 2px;
+  }
+}

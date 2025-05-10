@@ -1,0 +1,121 @@
+.merch .merchListItem {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-terminal-green-5);
+  border: 2px solid var(--color-terminal-green-50);
+  box-shadow: 4px 4px 0 var(--color-terminal-green-25);
+  width: calc(var(--item-width) + 16px);
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1100px) {
+  .merch .merchListItem {
+    width: calc(var(--item-width) + 4px);
+  }
+}
+
+.merch .merchListItem:hover,
+.merch .merchListItem:focus {
+  outline: 2px solid var(--color-off-white-50);
+  outline-offset: 2px;
+  border: 2px solid var(--color-terminal-green);
+  box-shadow: 4px 4px 0 var(--color-terminal-green-50);
+}
+
+.merch .merchListItem .merchListItemImage {
+  position: relative;
+  display: flex;
+  padding: 0 8px;
+  background-color: var(--color-black-50);
+  height: 100%;
+  width: var(--item-width);
+  height: var(--item-height);
+}
+
+.merch .merchListItem .merchListItemImage img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (max-width: 1100px) {
+  .merch .merchListItem .merchListItemImage {
+    padding: 0 2px;
+  }
+}
+
+.merch .merchListItem .title {
+  color: var(--color-terminal-green);
+  font-size: 14px;
+  line-height: 16px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .merch .merchListItem .title {
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.merch .merchListItem .merchListItemHeader {
+  display: flex;
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  border-bottom: 2px solid var(--color-terminal-green-50);
+  background-color: var(--color-terminal-green-5);
+  padding: 4px;
+}
+
+.merch .merchListItem .merchListItemFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: var(--color-terminal-green-10);
+  border-top: 2px solid var(--color-terminal-green-50);
+  padding: 4px;
+  font-size: 16px;
+  letter-spacing: -1px;
+}
+
+.merch .merchListItem .merchListItemHeader .status {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  margin-left: auto;
+  filter: drop-shadow(1px 1px 0 var(--color-terminal-green-50));
+}
+
+.merch .merchListItem .merchListItemHeader .status svg path {
+  fill: var(--color-terminal-green);
+}
+
+.merch .merchListItem .merchListItemFooter .price {
+  color: var(--color-gold);
+  text-shadow: 1px 1px 0
+    color-mix(in srgb, var(--color-orange), transparent 50%);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.merch .merchListItem .merchListItemFooter .price::before {
+  content: ">> ";
+  letter-spacing: -2px;
+  font-weight: 400;
+  color: var(--color-off-white);
+  text-shadow: 1px 1px 0 var(--color-off-white-25);
+}
+
+.merch .merchListItem .merchListItemFooter .buy {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-left: auto;
+}
+
+.merch .merchListItem .merchListItemFooter .buy::before {
+  content: "[";
+  color: var(--color-terminal-green);
+}
+
+.merch .merchListItem .merchListItemFooter .buy::after {
+  content: "]";
+  color: var(--color-terminal-green);
+}

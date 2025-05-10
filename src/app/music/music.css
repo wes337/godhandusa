@@ -37,6 +37,7 @@
   width: var(--album-width);
   margin: auto;
   background-color: var(--color-terminal-green-5);
+  margin-top: -16px;
 }
 
 .music .album {
