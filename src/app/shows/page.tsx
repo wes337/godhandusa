@@ -59,6 +59,7 @@ export default function Shows() {
             </button>
           );
         })}
+        <div className="more">More shows to be announced</div>
         <div className="clocks">
           <div className="uptime">[Uptime: 17:08:28]</div>
           <div className="time">[System Time: {time}]</div>

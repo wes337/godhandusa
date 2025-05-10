@@ -55,7 +55,10 @@ export default function Merch() {
       {selectedItem && (
         <MerchItemModal
           // item={selectedItem}
-          onClose={() => onChangeItem(null)}
+          onClose={() => {
+            onChangeItem(null);
+            setCartOpen(true);
+          }}
         />
       )}
       <Footer />
@@ -67,6 +70,8 @@ function ShoppingCart({ open, setOpen }) {
   if (typeof window === "undefined") {
     return null;
   }
+
+  const empty = false;
 
   return (
     <div className="shoppingCart">
@@ -83,15 +88,41 @@ function ShoppingCart({ open, setOpen }) {
           <div className={`shoppingCartPanel${open ? " open" : ""}`}>
             <div className="panelHeader">
               <div className="panelTitle">Shopping Cart</div>
-              <div className="cartItemCount">0 Items</div>
               <button className="closeCart" onClick={() => setOpen(false)}>
                 Exit
               </button>
             </div>
             <div className="panelBody">
-              <div className="empty">
-                Cart Status <span>Empty</span>
-              </div>
+              {empty ? (
+                <div className="empty">
+                  Cart Status <span>Empty</span>
+                </div>
+              ) : (
+                <div className="cartItems">
+                  <div className="cartItemCount">1 Items</div>
+                  <div className="cartItem">
+                    <div className="cartItemImage">
+                      <span>1x</span>
+                      <Image
+                        src={`/merch/front.png`}
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                    </div>
+                    <div className="cartItemTitle">
+                      <div>[ITEM_00] T-Shirt</div>
+                      <div className="cartItemSize">Medium</div>
+                    </div>
+                    <div className="cartItemPrice">$29.99</div>
+                    <button className="cartItemRemove">Remove</button>
+                  </div>
+                  <div className="cartItemSubtotal">Subtotal $29.99</div>
+                  <button className="cartItemCheckout">
+                    Proceed to Checkout
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </>,
@@ -181,6 +212,8 @@ function MerchItemModal({
       handleSizeError();
       return;
     }
+
+    onClose();
   };
 
   const onAddToCart = async () => {
@@ -188,6 +221,8 @@ function MerchItemModal({
       handleSizeError();
       return;
     }
+
+    onClose();
   };
 
   const images = ["/merch/front.png", "/merch/back.png"];

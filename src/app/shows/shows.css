@@ -78,7 +78,7 @@
   line-height: 1;
   letter-spacing: -1px;
   padding: 12px 0;
-  border: 1px solid var(--color-terminal-green-25);
+  border: 2px solid var(--color-terminal-green-25);
   text-shadow: 2px 2px 0 var(--color-terminal-green-25);
   text-transform: uppercase;
 }
@@ -184,4 +184,15 @@
   .shows .list .show .date {
     font-size: 18px;
   }
+}
+
+.shows .more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4px;
+  text-transform: uppercase;
+  background-color: var(--color-terminal-green-10);
+  border-bottom: 2px solid var(--color-terminal-green-10);
 }
