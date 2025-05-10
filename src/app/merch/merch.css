@@ -570,6 +570,8 @@
   font-weight: 700;
   width: 100%;
   letter-spacing: -0.5px;
+  color: var(--color-terminal-green);
+  text-shadow: 1px 1px 0 var(--color-terminal-green-50);
 }
 
 .shoppingCartPanel .cartItemSize {
@@ -672,6 +674,7 @@
   text-transform: uppercase;
   cursor: pointer;
   background-color: var(--color-terminal-green-10);
+  height: 32px;
 }
 
 .shoppingCartPanel .cartItemCheckout::before {
