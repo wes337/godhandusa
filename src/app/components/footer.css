@@ -28,6 +28,7 @@
 }
 
 .footer .link {
+  all: unset;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -40,7 +41,8 @@
 }
 
 .footer .link:hover {
-  color: var(--color-blue);
+  color: var(--color-gold);
+  text-shadow: 2px 2px 0 var(--color-off-white-10);
   background-color: var(--color-off-white-5);
 }
 

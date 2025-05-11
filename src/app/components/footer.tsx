@@ -103,10 +103,34 @@ export default function Footer() {
           <div className="links">
             <div className="label">LNKS</div>
             <div className="bracket">[</div>
-            <div className="link">IG</div>
-            <div className="link">YT</div>
-            <div className="link">SPFY</div>
-            <div className="link">SC</div>
+            <Link
+              className="link"
+              href="https://www.instagram.com/godhandusa"
+              target="_blank"
+            >
+              IG
+            </Link>
+            <Link
+              className="link"
+              href="https://www.youtube.com/channel/UCO4nbhid2cOtOpWrlaQPGoQ"
+              target="_blank"
+            >
+              YT
+            </Link>
+            <Link
+              className="link"
+              href="https://open.spotify.com/artist/52XZBIfTRn9iyM7QLf6DmX"
+              target="_blank"
+            >
+              SPFY
+            </Link>
+            <Link
+              className="link"
+              href="https://soundcloud.com/godhandusa"
+              target="_blank"
+            >
+              SC
+            </Link>
             <div className="bracket">]</div>
           </div>
         )}
