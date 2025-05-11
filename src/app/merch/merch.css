@@ -44,6 +44,10 @@
   margin-bottom: 48px;
 }
 
+.merch .list.single {
+  grid-template-columns: 1fr;
+}
+
 @media only screen and (max-width: 1100px) {
   .merch .list {
     gap: 16px;
@@ -385,6 +389,7 @@
 
 .merch .cartButton {
   all: unset;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -398,6 +403,14 @@
   font-size: 10px;
   text-transform: uppercase;
   color: var(--color-terminal-green);
+}
+
+.merch .cartButton .count {
+  position: absolute;
+  bottom: 16px;
+  left: 32px;
+  color: var(--color-terminal-green-50);
+  font-size: 16px;
 }
 
 .merch .cartButton .label::before {
@@ -450,6 +463,11 @@
 
   .merch .cartButton {
     padding: 8px;
+  }
+
+  .merch .cartButton .count {
+    bottom: 4px;
+    left: 16px;
   }
 }
 
@@ -656,15 +674,32 @@
 }
 
 .shoppingCartPanel .cartItemSubtotal {
-  font-size: 24px;
+  display: flex;
+  align-items: center;
   text-transform: uppercase;
-  text-align: right;
   padding: 8px;
-  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
   border-top: 2px solid var(--color-terminal-green-50);
   border-bottom: 2px solid var(--color-terminal-green-50);
   background-color: var(--color-black-50);
   margin-top: auto;
+}
+
+.shoppingCartPanel .cartItemSubtotalAmount {
+  font-size: 24px;
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  width: 100%;
+  text-align: right;
+}
+
+.shoppingCartPanel .cartItemSubtotalNote {
+  font-size: 16px;
+  line-height: 24px;
+  margin-right: auto;
+  color: var(--color-terminal-green-50);
+  text-shadow: 1px 1px 0 var(--color-terminal-green-25);
+  letter-spacing: -1px;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 .shoppingCartPanel .cartItemCheckout {

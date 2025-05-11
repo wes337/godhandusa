@@ -123,10 +123,10 @@
 
 .merchItemModalBody .image img {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
   object-fit: contain;
   user-select: none;
   opacity: 0;
@@ -200,6 +200,15 @@
   text-transform: uppercase;
   padding: 8px 0;
   width: 100%;
+}
+
+.merchItemModalBody .details .sizes button.soldOut {
+  opacity: 0.5;
+}
+
+.merchItemModalBody .details .sizes button span {
+  font-size: 14px;
+  letter-spacing: -1.5px;
 }
 
 .merchItemModalBody .details .sizes button::before {

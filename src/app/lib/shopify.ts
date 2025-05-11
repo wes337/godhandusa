@@ -102,13 +102,13 @@ export default class Shopify {
   }
 
   static async getProducts(first = 10, after = null) {
-    const cachedProducts = await Cache.getItem(
-      `products:${first}${after ? `:${after}` : ""}`
-    );
+    // const cachedProducts = await Cache.getItem(
+    //   `products:${first}${after ? `:${after}` : ""}`
+    // );
 
-    if (cachedProducts) {
-      return cachedProducts;
-    }
+    // if (cachedProducts) {
+    //   return cachedProducts;
+    // }
 
     const { data } = await Shopify.client.request(
       `query ProductsQuery($first: Int!, $after: String) {
@@ -178,6 +178,15 @@ export default class Shopify {
         descriptionHtml: node.descriptionHtml,
         images,
         price: node.priceRange.minVariantPrice.amount,
+        variants:
+          node.variants?.edges?.length > 0
+            ? node.variants.edges.map(({ node }) => ({
+                id: node.id,
+                title: node.title,
+                availableForSale: node.availableForSale,
+                price: node.price.amount,
+              }))
+            : [],
         soldOut,
       };
     });
@@ -189,7 +198,7 @@ export default class Shopify {
       hasMore,
     };
 
-    Cache.setItem(`products:${first}${after ? `:${after}` : ""}`, products, 30);
+    // Cache.setItem(`products:${first}${after ? `:${after}` : ""}`, products, 30);
 
     return products;
   }
@@ -248,6 +257,26 @@ export default class Shopify {
     );
 
     return data.cart;
+  }
+
+  static async isCartValid(cartId: string) {
+    try {
+      const { data } = await Shopify.client.request(
+        `query CartQuery($cartId: ID!) {
+          cart(id: $cartId) {
+            id
+            checkoutUrl
+          }
+        }`,
+        {
+          variables: { cartId },
+        }
+      );
+
+      return !!(data && data.cart && data.cart.id);
+    } catch {
+      return false;
+    }
   }
 
   static async createCart() {
@@ -414,5 +443,33 @@ export default class Shopify {
         variables: { cartId: cart.id, lineIds },
       }
     );
+  }
+
+  static async getCartItems(cartId: string) {
+    const cart = await Shopify.getCart(cartId);
+
+    if (
+      !cart ||
+      !cart.lines ||
+      !cart.lines.edges ||
+      cart.lines.edges.length === 0
+    ) {
+      return [];
+    }
+
+    return cart.lines.edges.map(({ node }) => {
+      const merchandise = node.merchandise;
+
+      return {
+        id: node.id,
+        quantity: node.quantity,
+        variantId: merchandise.id,
+        variantTitle: merchandise.title,
+        productTitle: merchandise.product.title,
+        productHandle: merchandise.product.handle,
+        price: merchandise.price.amount,
+        image: merchandise.image?.url || "",
+      };
+    });
   }
 }

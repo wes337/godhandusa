@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import SVG from "react-inlinesvg";
 import "./footer.css";
-import Link from "next/link";
 
 const MESSAGES = [
   { pre: "Grlfrnd Status", post: "Pregnant" },
@@ -39,8 +39,8 @@ export default function Footer() {
   const pathname = usePathname();
   const [message, setMessage] = useState(0);
   const [time, setTime] = useState("");
-  const [showExtras, setShowExtras] = useState(false);
-  const [showBackButton, setShowBackButton] = useState(false);
+  const [showExtras, setShowExtras] = useState(pathname === "/");
+  const [showBackButton, setShowBackButton] = useState(pathname !== "/");
   const [speed, setSpeed] = useState("fast");
   const [date, setDate] = useState("");
 
