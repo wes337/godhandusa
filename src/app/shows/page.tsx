@@ -46,7 +46,12 @@ export default function Shows() {
         </div>
         {SHOWS.map((show, index) => {
           return (
-            <button key={index} className="show">
+            <Link
+              key={index}
+              className="show"
+              href={show.ticketLink}
+              target="_blank"
+            >
               <div className="location">
                 <span className="city">{show.city}</span>
                 <span className="venue">{show.venue}</span>
@@ -56,7 +61,7 @@ export default function Shows() {
                 <span>Get</span>
                 <span>Tickets</span>
               </div>
-            </button>
+            </Link>
           );
         })}
         <div className="more">More shows to be announced</div>
