@@ -1,6 +1,6 @@
-import Link from "next/link";
 import Footer from "./components/footer";
 import SplashImage from "./components/splash-image";
+import NavLink from "./components/nav-link";
 import "./home.css";
 
 export const metadata = {
@@ -12,10 +12,10 @@ export default function Home() {
     <div className="home">
       <SplashImage />
       <div className="nav">
-        <Link href="/music">Music</Link>
-        <Link href="/videos">Videos</Link>
-        <Link href="/shows">Shows</Link>
-        <Link href="/merch">Merch</Link>
+        <NavLink href="/music" label="Music" />
+        <NavLink href="/videos" label="Videos" />
+        <NavLink href="/shows" label="Shows" />
+        <NavLink href="/merch" label="Merch" />
       </div>
       <Footer />
     </div>

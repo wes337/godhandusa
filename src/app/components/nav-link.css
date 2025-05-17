@@ -1,0 +1,38 @@
+.navLink {
+  display: flex;
+}
+
+.navLink a {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-terminal-green);
+  text-shadow: 1px 1px 0 var(--color-terminal-green-25);
+  text-decoration: none;
+  font-size: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  width: 148px;
+  text-align: center;
+}
+
+.navLink a::before {
+  content: "[";
+  color: var(--color-terminal-green-50);
+  opacity: 0;
+}
+
+.navLink a::after {
+  content: "]";
+  color: var(--color-terminal-green-25);
+  opacity: 0;
+}
+
+.navLink a:hover {
+  color: var(--color-off-white);
+}
+
+.navLink a:hover::before,
+.navLink a:hover::after {
+  opacity: 1;
+}

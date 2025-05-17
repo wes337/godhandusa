@@ -238,6 +238,7 @@ function MerchItemModal({
   const [showSizes, setShowSizes] = useState(false);
   const [variant, setVariant] = useState<ProductVariant | null>(null);
   const [showSizeError, setShowSizeError] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({
     open: showSizes,
@@ -326,8 +327,24 @@ function MerchItemModal({
       ? product.variants.find(({ id }) => id === variant.id)
       : null;
 
-    return selectedVariant?.price || product.price;
+    return Number(selectedVariant?.price || product.price).toFixed(2);
   };
+
+  if (fullscreen) {
+    return (
+      <div className="merchItemModalFullscreen">
+        <Image
+          src={product.images[currentImage]}
+          alt=""
+          width={447}
+          height={559}
+        />
+        <button className="close" onClick={() => setFullscreen(false)}>
+          Exit
+        </button>
+      </div>
+    );
+  }
 
   return createPortal(
     <>
@@ -335,7 +352,7 @@ function MerchItemModal({
       <div className="merchItemModal">
         <div className="merchItemModalHeader">
           <div className="title">
-            [ITEM_{`${product.index || 0}`.padStart(2, "0")}] T-Shirt
+            [ITEM_{`${product.index || 0}`.padStart(2, "0")}] {product.title}
           </div>
           <button className="closeModal" onClick={onClose}>
             Exit
@@ -343,6 +360,9 @@ function MerchItemModal({
         </div>
         <div className="merchItemModalBody">
           <div className="image">
+            <button className="fullscreen" onClick={() => setFullscreen(true)}>
+              <SVG src={`/solid-scale.svg`} width={40} height={40} />
+            </button>
             <button onClick={gotoPreviousImage}>&lt;&lt;</button>
             {product.images.map((image, index) => {
               return (
