@@ -5,6 +5,7 @@ import Image from "next/image";
 import SHOWS from "../constants/shows";
 import Link from "next/link";
 import Footer from "../components/footer";
+import GlitchText from "../components/glitch-text";
 import "./shows.css";
 
 function getCurrentTime() {
@@ -53,18 +54,30 @@ export default function Shows() {
               target="_blank"
             >
               <div className="location">
-                <span className="city">{show.city}</span>
-                <span className="venue">{show.venue}</span>
+                <span className="city">
+                  <GlitchText label={show.city} />
+                </span>
+                <span className="venue">
+                  <GlitchText label={show.venue} />
+                </span>
               </div>
-              <div className="date">{show.date}</div>
+              <div className="date">
+                <GlitchText label={show.date} />
+              </div>
               <div className="tickets">
-                <span>Get</span>
-                <span>Tickets</span>
+                <span>
+                  <GlitchText label={"Get"} hover />
+                </span>
+                <span>
+                  <GlitchText label={"Tickets"} hover />
+                </span>
               </div>
             </Link>
           );
         })}
-        <div className="more">More shows to be announced</div>
+        <div className="more">
+          <GlitchText label={" More shows to be announced"} />
+        </div>
         <div className="clocks">
           <div className="uptime">[Uptime: 17:08:28]</div>
           <div className="time">[System Time: {time}]</div>

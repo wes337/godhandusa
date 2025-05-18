@@ -6,6 +6,7 @@ import ALBUMS from "../constants/albums";
 import Link from "next/link";
 import Footer from "../components/footer";
 import "./music.css";
+import GlitchText from "../components/glitch-text";
 
 function calculateTime(seconds: number) {
   try {
@@ -65,14 +66,20 @@ export default function Music() {
             </div>
             <button onClick={gotoNextAlbum}>&gt;&gt;</button>
           </div>
-          <div className="title">{currentAlbum.title}</div>
+          <div className="title">
+            <GlitchText label={currentAlbum.title} />
+          </div>
           <div className="details">
             <div className="releaseDate">
-              [ONLINE {new Date(currentAlbum.releaseDate).toISOString()}]
+              <GlitchText
+                label={`[ONLINE ${new Date(
+                  currentAlbum.releaseDate
+                ).toISOString()}]`}
+              />
             </div>
             <div className="spacing">-----</div>
             <div className="trackCount">
-              [{currentAlbum.tracks.length} Tracks]
+              <GlitchText label={`[${currentAlbum.tracks.length} Tracks]`} />
             </div>
           </div>
           <div className="tracks">
@@ -85,7 +92,9 @@ export default function Music() {
                   target="_blank"
                 >
                   <div className="trackNumber">{track.trackNo}</div>
-                  <div className="trackTitle">{track.title}</div>
+                  <div className="trackTitle">
+                    <GlitchText label={track.title} hover />
+                  </div>
                   <div className="duration">
                     {calculateTime(track.durationMS / 1000)}
                   </div>
@@ -93,7 +102,9 @@ export default function Music() {
               );
             })}
           </div>
-          <div className="flair">[End of System Input]</div>
+          <div className="flair">
+            <GlitchText label={`[End of System Input]`} />
+          </div>
         </div>
       </div>
       <Footer />

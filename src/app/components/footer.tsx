@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
+import { randomNumberBetween, getCurrentTime } from "../utils";
+import GlitchText from "./glitch-text";
 import "./footer.css";
 
 const MESSAGES = [
@@ -23,18 +25,6 @@ const MESSAGES = [
   { pre: "Bitches Stomped", post: Math.round(Math.random() * 1000) },
 ];
 
-function getCurrentTime() {
-  const now = new Date();
-  const hours = String(now.getHours()).padStart(2, "0");
-  const minutes = String(now.getMinutes()).padStart(2, "0");
-  const seconds = String(now.getSeconds()).padStart(2, "0");
-  return `${hours}:${minutes}:${seconds}`;
-}
-
-function randomNumberBetween(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
 export default function Footer() {
   const pathname = usePathname();
   const [message, setMessage] = useState(0);
@@ -43,6 +33,7 @@ export default function Footer() {
   const [showBackButton, setShowBackButton] = useState(pathname !== "/");
   const [speed, setSpeed] = useState("fast");
   const [date, setDate] = useState("");
+  const [timestamp, setTimestamp] = useState(Date.now());
 
   useEffect(() => {
     setShowExtras(pathname === "/");
@@ -84,6 +75,8 @@ export default function Footer() {
       } else {
         setSpeed("fast");
       }
+
+      setTimestamp(Date.now());
     }, 5000);
 
     return () => {
@@ -95,7 +88,7 @@ export default function Footer() {
     <>
       {showBackButton && (
         <Link className="backButton" href="/">
-          Return
+          <GlitchText label="Return" hover />
         </Link>
       )}
       <div className="footer">
@@ -134,15 +127,21 @@ export default function Footer() {
             <div className="bracket">]</div>
           </div>
         )}
-        <div className="legal">℗ 2025 Eye and Hand Society</div>
+        <div className="legal">
+          <GlitchText label="℗ 2025 Eye and Hand Society" />
+        </div>
         <div className="statusBar">
           <div className="time">
             System Time: <span>{time}</span>
           </div>
           <div className="date">[{date}]</div>
-          <div className="message">
-            <div className="pre">{MESSAGES[message].pre}</div>
-            <div className="post">{MESSAGES[message].post}</div>
+          <div className="message" key={timestamp}>
+            <div className="pre">
+              <GlitchText label={MESSAGES[message].pre} />
+            </div>
+            <div className="post">
+              <GlitchText label={MESSAGES[message].post} />
+            </div>
             <div className={`icon ${speed}`}>
               <SVG src={`/solid-speed-${speed}.svg`} width={16} height={16} />
             </div>

@@ -17,6 +17,7 @@ import MerchListItem from "./merch-list-item";
 import "./merch.css";
 import "./merch-list-item.css";
 import "./merch-item-modal.css";
+import GlitchText from "../components/glitch-text";
 
 export default function MerchList({ products }: { products: Product[] }) {
   const [cart, setCart] = useState<any>(null);
@@ -141,7 +142,7 @@ function ShoppingCart({ cart, open, setOpen }) {
   return (
     <div className="shoppingCart">
       <button className="cartButton" onClick={() => setOpen(true)}>
-        <div className="label">Shpng Crt</div>
+        <div className="label">Cart</div>
         {cartItems.length > 0 && (
           <div className="count">{cartItems.length}</div>
         )}
@@ -420,8 +421,12 @@ function MerchItemModal({
             <div className="price">${price()}</div>
           </div>
           <div className="buttons">
-            <button onClick={onAddToCart}>Add to Cart</button>
-            <button onClick={onBuyNow}>Buy Now</button>
+            <button onClick={onAddToCart}>
+              <GlitchText label="Add to Cart" hover />
+            </button>
+            <button onClick={onBuyNow}>
+              <GlitchText label="Buy Now" hover />
+            </button>
           </div>
         </div>
       </div>

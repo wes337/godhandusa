@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
 import { Product } from "../utils";
+import GlitchText from "../components/glitch-text";
 import "./merch-list-item.css";
 
 export default function MerchListItem(props: {
@@ -12,6 +13,7 @@ export default function MerchListItem(props: {
   onClick: () => void;
 }) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [timestamp, setTimestamp] = useState(Date.now());
 
   useEffect(() => {
     const timeout = timeoutRef.current;
@@ -34,11 +36,24 @@ export default function MerchListItem(props: {
     }, 100);
   };
 
+  const price = () => {
+    return Number(props.product.price).toFixed(2);
+  };
+
   return (
-    <div className="merchListItem" onClick={onClick}>
+    <div
+      className="merchListItem"
+      onClick={onClick}
+      onPointerEnter={() => setTimestamp(Date.now())}
+    >
       <div className="merchListItemHeader">
         <div className="title">
-          [ITEM_{`${props.index}`.padStart(2, "0")}] {props.product.title}
+          <GlitchText
+            label={`[ITEM_${`${props.index}`.padStart(2, "0")}] ${
+              props.product.title
+            }`}
+            key={timestamp}
+          />
         </div>
         <div className="status">
           <SVG src={`/solid-cellular-signal-3.svg`} width={16} height={16} />
@@ -48,8 +63,10 @@ export default function MerchListItem(props: {
         <Image src={props.product.images[0]} alt="" width={447} height={559} />
       </div>
       <div className="merchListItemFooter">
-        <div className="price">${props.product.price}</div>
-        <div className="buy">Buy</div>
+        <div className="price">${price()}</div>
+        <div className="buy">
+          <GlitchText label="Buy" key={timestamp} />
+        </div>
       </div>
     </div>
   );

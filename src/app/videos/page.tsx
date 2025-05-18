@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { randomNumberBetween } from "../utils";
 import Footer from "../components/footer";
 import "./videos.css";
 
@@ -34,10 +35,6 @@ const RANDOM_PHRASES = [
 
 function getRandomPhrase() {
   return RANDOM_PHRASES[Math.floor(Math.random() * RANDOM_PHRASES.length)];
-}
-
-function randomNumberBetween(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function reverseString(str: string) {
