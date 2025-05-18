@@ -56,7 +56,7 @@ export default function Videos() {
     <div className="videos">
       <Link href="/" className="logo">
         <Image
-          src={`/hand-small.png`}
+          src={`/hand-small-green.png`}
           alt="GODHANDUSA"
           width={327}
           height={378}

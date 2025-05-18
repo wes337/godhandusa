@@ -14,7 +14,7 @@ export default function Merch() {
     <div className="merch">
       <Link href="/" className="logo">
         <Image
-          src={`/hand-small.png`}
+          src={`/hand-small-green.png`}
           alt="GODHANDUSA"
           width={327}
           height={378}

@@ -43,7 +43,7 @@ export default function Music() {
     <div className="music">
       <Link href="/" className="logo">
         <Image
-          src={`/hand-small.png`}
+          src={`/hand-small-green.png`}
           alt="GODHANDUSA"
           width={327}
           height={378}

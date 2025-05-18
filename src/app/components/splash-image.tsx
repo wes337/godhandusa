@@ -117,7 +117,7 @@ const SplashImageCanvas = memo(({ src, intense }: SplashImageCanvasProps) => {
 SplashImageCanvas.displayName = "SplashImageCanvas";
 
 export default function SplashImage() {
-  const [src, setSrc] = useState(7);
+  const [src, setSrc] = useState(8);
   const [intense, setIntense] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
