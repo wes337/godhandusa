@@ -13,11 +13,11 @@ import SVG from "react-inlinesvg";
 import Cache from "../lib/cache";
 import Shopify from "../lib/shopify";
 import { Product, ProductVariant } from "../utils";
+import GlitchText from "../components/glitch-text";
 import MerchListItem from "./merch-list-item";
 import "./merch.css";
 import "./merch-list-item.css";
 import "./merch-item-modal.css";
-import GlitchText from "../components/glitch-text";
 
 export default function MerchList({ products }: { products: Product[] }) {
   const [cart, setCart] = useState<any>(null);
@@ -364,7 +364,9 @@ function MerchItemModal({
             <button className="fullscreen" onClick={() => setFullscreen(true)}>
               <SVG src={`/solid-scale.svg`} width={40} height={40} />
             </button>
-            <button onClick={gotoPreviousImage}>&lt;&lt;</button>
+            {product.images.length > 1 && (
+              <button onClick={gotoPreviousImage}>&lt;&lt;</button>
+            )}
             {product.images.map((image, index) => {
               return (
                 <Image
@@ -377,7 +379,9 @@ function MerchItemModal({
                 />
               );
             })}
-            <button onClick={gotoNextImage}>&gt;&gt;</button>
+            {product.images.length > 1 && (
+              <button onClick={gotoNextImage}>&gt;&gt;</button>
+            )}
           </div>
           <div className="details">
             <button
