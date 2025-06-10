@@ -6,7 +6,7 @@ export default class Cache {
   static {
     Cache.instance = localForage.createInstance({
       driver: localForage.INDEXEDDB,
-      name: "mde",
+      name: "godhandusa",
       version: 1.0,
     });
   }
