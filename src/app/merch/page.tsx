@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import MerchList from "./merch-list";
@@ -7,9 +10,13 @@ import "./merch.css";
 import "./merch-list-item.css";
 import "./merch-item-modal.css";
 
-const products = await Shopify.getProducts();
-
 export default function Merch() {
+  const [products, setProducts] = useState({ results: [], hasMore: false });
+
+  useEffect(() => {
+    Shopify.getProducts().then((products) => setProducts(products));
+  }, []);
+
   return (
     <div className="merch">
       <Link href="/" className="logo">

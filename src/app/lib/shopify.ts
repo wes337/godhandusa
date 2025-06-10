@@ -102,13 +102,13 @@ export default class Shopify {
   }
 
   static async getProducts(first = 10, after = null) {
-    // const cachedProducts = await Cache.getItem(
-    //   `products:${first}${after ? `:${after}` : ""}`
-    // );
+    const cachedProducts = await Cache.getItem(
+      `products:${first}${after ? `:${after}` : ""}`
+    );
 
-    // if (cachedProducts) {
-    //   return cachedProducts;
-    // }
+    if (cachedProducts) {
+      return cachedProducts;
+    }
 
     const { data } = await Shopify.client.request(
       `query ProductsQuery($first: Int!, $after: String) {
@@ -198,7 +198,7 @@ export default class Shopify {
       hasMore,
     };
 
-    // Cache.setItem(`products:${first}${after ? `:${after}` : ""}`, products, 30);
+    Cache.setItem(`products:${first}${after ? `:${after}` : ""}`, products, 5);
 
     return products;
   }
