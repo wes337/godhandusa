@@ -14,7 +14,7 @@ export default function Merch() {
   const [products, setProducts] = useState({ results: [], hasMore: false });
 
   useEffect(() => {
-    Shopify.getProducts().then((products) => setProducts(products));
+    Shopify.getProducts().then((products) => setProducts(products as any));
   }, []);
 
   return (
