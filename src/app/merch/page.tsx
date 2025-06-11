@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MerchList from "./merch-list";
 import Shopify from "../lib/shopify";
+import Zendesk from "../components/zendesk";
 import Footer from "../components/footer";
 import "./merch.css";
 import "./merch-list-item.css";
@@ -20,17 +21,20 @@ export default function Merch() {
   }, []);
 
   return (
-    <div className="merch">
-      <Link href="/" className="logo">
-        <Image
-          src={`/hand-small-green.png`}
-          alt="GODHANDUSA"
-          width={327}
-          height={378}
-        />
-      </Link>
-      <MerchList products={products?.results || []} />
-      <Footer />
-    </div>
+    <>
+      <div className="merch">
+        <Link href="/" className="logo">
+          <Image
+            src={`/hand-small-green.png`}
+            alt="GODHANDUSA"
+            width={327}
+            height={378}
+          />
+        </Link>
+        <MerchList products={products?.results || []} />
+        <Footer />
+      </div>
+      <Zendesk />
+    </>
   );
 }
