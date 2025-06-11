@@ -17,6 +17,12 @@
   }
 }
 
+@media screen and (max-height: 940px) {
+  .merch {
+    --logo-size: 80px;
+  }
+}
+
 .merch .logo {
   height: var(--logo-size);
   margin: 0 auto;

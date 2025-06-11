@@ -101,7 +101,137 @@ export default class Shopify {
     return product;
   }
 
-  static async getProducts(first = 10, after = null) {
+  static async getProductsFromCollection(
+    collectionId: string,
+    first = 10,
+    after = null
+  ) {
+    const cachedProducts = await Cache.getItem(
+      `collection:${collectionId}:${first}${after ? `:${after}` : ""}`
+    );
+
+    if (cachedProducts) {
+      return cachedProducts;
+    }
+
+    const { data } = await Shopify.client.request(
+      `query CollectionProductsQuery($id: ID!, $first: Int!, $after: String) {
+        collection(id: $id) {
+          id
+          title
+          products(first: $first, after: $after) {
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
+            edges {
+              node {
+                id
+                title
+                handle
+                description
+                descriptionHtml
+                variants(first: 25) {
+                  edges {
+                    node {
+                      id
+                      title
+                      price {
+                        amount
+                        currencyCode
+                      }
+                      availableForSale
+                    }
+                  }
+                }
+                priceRange {
+                  minVariantPrice {
+                    amount
+                    currencyCode
+                  }
+                }
+                images(first: 3) {
+                  edges {
+                    node {
+                      url
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }`,
+      {
+        variables: {
+          id: `gid://shopify/Collection/${collectionId}`,
+          first,
+          after,
+        },
+      }
+    );
+
+    if (!data.collection) {
+      throw new Error(`Collection with ID "${collectionId}" not found`);
+    }
+
+    const results = data.collection.products.edges.map(({ node }) => {
+      const images =
+        node.images?.edges?.length > 0
+          ? node.images.edges.map(({ node }) => node.url || "")
+          : [];
+
+      const soldOut = !node.variants.edges.some(
+        ({ node }) => node.availableForSale
+      );
+
+      return {
+        id: node.id,
+        handle: node.handle,
+        title: node.title,
+        description: node.description,
+        descriptionHtml: node.descriptionHtml,
+        images,
+        price: node.priceRange.minVariantPrice.amount,
+        variants:
+          node.variants?.edges?.length > 0
+            ? node.variants.edges.map(({ node }) => ({
+                id: node.id,
+                title: node.title,
+                availableForSale: node.availableForSale,
+                price: node.price.amount,
+              }))
+            : [],
+        soldOut,
+      };
+    });
+
+    const hasMore = data.collection.products.pageInfo?.hasNextPage || false;
+
+    const products = {
+      results,
+      hasMore,
+    };
+
+    Cache.setItem(
+      `collection:${collectionId}:${first}${after ? `:${after}` : ""}`,
+      products,
+      5
+    );
+
+    return products;
+  }
+
+  static async getProducts(first = 10, after = null, collectionHandle = null) {
+    if (collectionHandle) {
+      return await Shopify.getProductsFromCollection(
+        collectionHandle,
+        first,
+        after
+      );
+    }
+
     const cachedProducts = await Cache.getItem(
       `products:${first}${after ? `:${after}` : ""}`
     );

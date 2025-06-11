@@ -15,6 +15,12 @@
   }
 }
 
+@media screen and (max-height: 940px) {
+  .shows {
+    --logo-size: 80px;
+  }
+}
+
 @media only screen and (min-width: 2000px) {
   .shows {
     --shows-width: 640px;

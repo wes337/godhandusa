@@ -18,6 +18,12 @@
   }
 }
 
+@media screen and (max-height: 940px) {
+  .videos {
+    --logo-size: 80px;
+  }
+}
+
 @media only screen and (min-width: 2000px) {
   .videos {
     --video-width: 480px;

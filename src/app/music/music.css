@@ -15,6 +15,12 @@
   }
 }
 
+@media screen and (max-height: 940px) {
+  .music {
+    --logo-size: 80px;
+  }
+}
+
 .music .logo {
   height: var(--logo-size);
   margin: auto;
