@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Share_Tech_Mono } from "next/font/google";
 import FX from "./components/fx";
 import Static from "./components/static";
