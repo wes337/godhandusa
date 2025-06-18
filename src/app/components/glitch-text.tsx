@@ -30,10 +30,18 @@ export default function GlitchText(props) {
         now = Date.now();
       }
 
+      if (!props.label) {
+        return;
+      }
+
       const getRandomLetter = () => {
-        return props.label.charAt(
-          randomNumberBetween(0, props.label.length - 1)
-        );
+        try {
+          return props.label.charAt(
+            randomNumberBetween(0, props.label.length - 1)
+          );
+        } catch {
+          return "";
+        }
       };
 
       let letter = getRandomLetter();

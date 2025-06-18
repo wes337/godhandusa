@@ -82,7 +82,11 @@ function ShoppingCart({ cart, open, setOpen }) {
 
     const cartItems = await Shopify.getCartItems(cart.id);
     setCartItems(cartItems);
-  }, [cart]);
+
+    if (cartItems.length > 0) {
+      setOpen(true);
+    }
+  }, [cart, setOpen]);
 
   useEffect(() => {
     document.addEventListener("updatecart", getShopifyCartItems);
@@ -115,8 +119,8 @@ function ShoppingCart({ cart, open, setOpen }) {
   const subtotal = () => {
     let amount = 0;
 
-    cartItems.forEach(({ price }) => {
-      amount += Number(price);
+    cartItems.forEach(({ price, quantity }) => {
+      amount += Number(price) * Number(quantity);
     });
 
     return amount;
@@ -173,7 +177,7 @@ function ShoppingCart({ cart, open, setOpen }) {
                     return (
                       <div key={cartItem.id} className="cartItem">
                         <div className="cartItemImage">
-                          <span>1x</span>
+                          <span>{cartItem.quantity}x</span>
                           <Image
                             src={cartItem.image}
                             alt=""
@@ -190,7 +194,9 @@ function ShoppingCart({ cart, open, setOpen }) {
                             {cartItem.variantTitle}
                           </div>
                         </div>
-                        <div className="cartItemPrice">${cartItem.price}</div>
+                        <div className="cartItemPrice">
+                          ${cartItem.price * cartItem.quantity}
+                        </div>
                         <button
                           className="cartItemRemove"
                           onClick={() => onRemoveCartItem(cartItem)}
