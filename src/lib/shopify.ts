@@ -2,7 +2,7 @@ import {
   createStorefrontApiClient,
   StorefrontApiClient,
 } from "@shopify/storefront-api-client";
-import Cache from "./cache";
+import Cache from "@/lib/cache";
 
 export default class Shopify {
   static client: StorefrontApiClient;
@@ -601,5 +601,57 @@ export default class Shopify {
         image: merchandise.image?.url || "",
       };
     });
+  }
+
+  static async getPageByHandle(handle: string) {
+    const { data } = await Shopify.client.request(
+      `query PageQuery($handle: String!) {
+          pageByHandle(handle: $handle) {
+            title
+            body
+            handle
+          }
+        }`,
+      {
+        variables: { handle },
+      }
+    );
+
+    return data.pageByHandle;
+  }
+
+  static async getAllPolicies() {
+    try {
+      const { data } = await Shopify.client.request(
+        `query {
+          shop {
+            privacyPolicy {
+              handle
+              title
+              body
+            }
+            refundPolicy {
+              handle
+              title
+              body
+            }
+            shippingPolicy {
+              handle
+              title
+              body
+            }
+            termsOfService {
+              handle
+              title
+              body
+            }
+          }
+        }`
+      );
+
+      return data.shop;
+    } catch {
+      return false;
+    }
   }
 }

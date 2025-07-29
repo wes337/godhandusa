@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Share_Tech_Mono } from "next/font/google";
-import FX from "./components/fx";
-import Static from "./components/static";
+import FX from "@/components/fx";
+import Static from "@/components/static";
 import "./globals.css";
 
 const shareTechMono = Share_Tech_Mono({

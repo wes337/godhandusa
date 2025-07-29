@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import ALBUMS from "../constants/albums";
 import Link from "next/link";
-import Footer from "../components/footer";
+import ALBUMS from "@/data/albums";
+import GlitchText from "@/components/glitch-text";
+import Footer from "@/components/footer";
 import "./music.css";
-import GlitchText from "../components/glitch-text";
 
 function calculateTime(seconds: number) {
   try {

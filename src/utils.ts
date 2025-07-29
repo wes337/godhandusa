@@ -21,6 +21,12 @@ export function randomNumberBetween(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+export function toCamelCase(text) {
+  return text.replace(/-([a-z])/g, (t) => {
+    return t[1].toUpperCase();
+  });
+}
+
 export function getGlitchLetter(letter: string) {
   if (!isNaN(parseInt(letter))) {
     return randomNumberBetween(0, 9);

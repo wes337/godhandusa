@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import GlitchText from "./glitch-text";
+import GlitchText from "@/components/glitch-text";
 import "./nav-link.css";
 
 export default function NavLink(props) {

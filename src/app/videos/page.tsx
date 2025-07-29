@@ -3,22 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { randomNumberBetween } from "../utils";
-import Footer from "../components/footer";
+import VIDEOS from "@/data/videos";
+import { randomNumberBetween } from "@/utils";
+import Footer from "@/components/footer";
 import "./videos.css";
-
-const VIDEOS = [
-  {
-    id: "disside",
-    name: "DI$ SIDE",
-    url: "P5EKMn7OQik?si=LAUaSzVfm7WRtF6H",
-  },
-  {
-    id: "ridin",
-    name: "RIDIN' IN THE WHIP PT. 2",
-    url: "tD_92m8Te1Q?si=3Om--tujDFEYyA4u",
-  },
-];
 
 const RANDOM_PHRASES = [
   "REALITY CORRUPTION",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { randomNumberBetween, getGlitchLetter } from "../utils";
+import { randomNumberBetween, getGlitchLetter } from "@/utils";
 import "./glitch-text.css";
 
 export default function GlitchText(props) {

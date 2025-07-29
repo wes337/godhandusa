@@ -69,7 +69,6 @@ const ALBUMS = [
   },
   {
     title: "GODHAND VOLUME 1",
-
     id: "1sAr7ylbTfTyPnNT17ZwZI",
     cover: "/albums/1.jpg",
     releaseDate: Date.parse("11 Sep 2024 00:00:00 PDT"),

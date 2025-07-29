@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
-import { Product } from "../utils";
-import GlitchText from "../components/glitch-text";
+import { Product } from "@/utils";
+import GlitchText from "@/components/glitch-text";
 import "./merch-list-item.css";
 
 export default function MerchListItem(props: {

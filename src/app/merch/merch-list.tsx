@@ -10,10 +10,10 @@ import {
   autoUpdate,
 } from "@floating-ui/react";
 import SVG from "react-inlinesvg";
-import Cache from "../lib/cache";
-import Shopify from "../lib/shopify";
-import { Product, ProductVariant } from "../utils";
-import GlitchText from "../components/glitch-text";
+import { Product, ProductVariant } from "@/utils";
+import Cache from "@/lib/cache";
+import Shopify from "@/lib/shopify";
+import GlitchText from "@/components/glitch-text";
 import MerchListItem from "./merch-list-item";
 import "./merch.css";
 import "./merch-list-item.css";

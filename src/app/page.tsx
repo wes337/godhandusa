@@ -1,6 +1,6 @@
-import Footer from "./components/footer";
-import SplashImage from "./components/splash-image";
-import NavLink from "./components/nav-link";
+import Footer from "@/components/footer";
+import SplashImage from "@/components/splash-image";
+import NavLink from "@/components/nav-link";
 import "./home.css";
 
 export const metadata = {

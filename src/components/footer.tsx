@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
-import { randomNumberBetween, getCurrentTime } from "../utils";
-import GlitchText from "./glitch-text";
+import { randomNumberBetween, getCurrentTime } from "@/utils";
+import GlitchText from "@/components/glitch-text";
 import "./footer.css";
 
 const MESSAGES = [

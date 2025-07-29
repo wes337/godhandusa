@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Shopify from "@/lib/shopify";
+import Zendesk from "@/components/zendesk";
+import Footer from "@/components/footer";
 import MerchList from "./merch-list";
-import Shopify from "../lib/shopify";
-import Zendesk from "../components/zendesk";
-import Footer from "../components/footer";
 import "./merch.css";
 import "./merch-list-item.css";
 import "./merch-item-modal.css";

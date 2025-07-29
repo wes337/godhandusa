@@ -1,0 +1,14 @@
+API Token: erNe2zvBO9jjURd0awT1ysRdqQyCUFdJZWSRh9x1
+ 
+Mirror order of current 'Support' button widget on site
+ 
+Default Fields:
+Email address 
+How can we help you? (description)
+Attachments
+ 
+Custom Fields / Field ID 
+Full name / 4833800983839
+Order number / 4833861297951
+Purchase email / 4833869099551
+Type of issue / 4833808736927

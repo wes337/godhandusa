@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import SHOWS from "../constants/shows";
 import Link from "next/link";
-import Footer from "../components/footer";
-import GlitchText from "../components/glitch-text";
+import SHOWS from "@/data/shows";
+import Footer from "@/components/footer";
+import GlitchText from "@/components/glitch-text";
 import "./shows.css";
 
 function getCurrentTime() {
