@@ -65,8 +65,12 @@ export default function GlitchText(props) {
 
       seenLetters.push(letter);
 
-      const glitchLabel = props.label.replace(letter, getGlitchLetter(letter));
-      setLabel(glitchLabel);
+      const glitchLabel = props?.label?.replace?.(
+        letter,
+        getGlitchLetter(letter)
+      );
+
+      setLabel(glitchLabel || "");
 
       animationTimeout.current = setTimeout(() => {
         animationFrame.current = requestAnimationFrame(animate);

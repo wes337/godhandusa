@@ -1,0 +1,40 @@
+.faq {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: -webkit-fill-available;
+
+  --album-width: 400px;
+  --logo-size: 120px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .faq {
+    --album-width: 340px;
+    --logo-size: 80px;
+  }
+}
+
+@media screen and (max-height: 940px) {
+  .faq {
+    --logo-size: 80px;
+  }
+}
+
+.faq .logo {
+  height: var(--logo-size);
+  margin: auto;
+  padding: 16px;
+  margin-bottom: 24px;
+  filter: drop-shadow(2px 2px 0px var(--color-terminal-green-50));
+  opacity: 0.75;
+}
+
+.faq .logo img {
+  height: 100%;
+  width: auto;
+}
+
+.faq .logo:hover {
+  opacity: 1;
+}

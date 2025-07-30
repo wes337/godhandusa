@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
     "@floating-ui/react": "^0.27.8",
     "@shopify/storefront-api-client": "^1.0.7",

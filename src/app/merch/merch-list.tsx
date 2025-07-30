@@ -245,7 +245,7 @@ function MerchItemModal({
   const [showSizes, setShowSizes] = useState(false);
   const [variant, setVariant] = useState<ProductVariant | null>(null);
   const [showSizeError, setShowSizeError] = useState(false);
-  const [fullscreen, setFullscreen] = useState(false);
+  const [fullscreen, setFullscreen] = useState("");
 
   const { refs, floatingStyles, context } = useFloating({
     open: showSizes,
@@ -290,20 +290,20 @@ function MerchItemModal({
     });
   };
 
-  const onBuyNow = async () => {
-    if (!variant) {
-      handleSizeError();
-      return;
-    }
+  // const onBuyNow = async () => {
+  //   if (!variant) {
+  //     handleSizeError();
+  //     return;
+  //   }
 
-    const newCart = await Shopify.createCart();
+  //   const newCart = await Shopify.createCart();
 
-    await Shopify.addToCart(newCart.id, [
-      { merchandiseId: variant.id, quantity: 1 },
-    ]);
+  //   await Shopify.addToCart(newCart.id, [
+  //     { merchandiseId: variant.id, quantity: 1 },
+  //   ]);
 
-    window.location.href = newCart.checkoutUrl;
-  };
+  //   window.location.href = newCart.checkoutUrl;
+  // };
 
   const onAddToCart = async () => {
     if (!cart) {
@@ -337,16 +337,37 @@ function MerchItemModal({
     return Number(selectedVariant?.price || product.price).toFixed(2);
   };
 
-  if (fullscreen) {
+  if (fullscreen === "sizeChart") {
     return (
       <div className="merchItemModalFullscreen">
+        <Image src={"/sizechart.webp"} alt="" width={1080} height={1350} />
+        <button className="close" onClick={() => setFullscreen("")}>
+          Exit
+        </button>
+      </div>
+    );
+  }
+
+  if (fullscreen === "product") {
+    return (
+      <div className="merchItemModalFullscreen">
+        {product.images.length > 1 && (
+          <button className="prevImage" onClick={gotoPreviousImage}>
+            &lt;&lt;
+          </button>
+        )}
         <Image
           src={product.images[currentImage]}
           alt=""
           width={447}
           height={559}
         />
-        <button className="close" onClick={() => setFullscreen(false)}>
+        {product.images.length > 1 && (
+          <button className="nextImage" onClick={gotoNextImage}>
+            &gt;&gt;
+          </button>
+        )}
+        <button className="close" onClick={() => setFullscreen("")}>
           Exit
         </button>
       </div>
@@ -367,7 +388,10 @@ function MerchItemModal({
         </div>
         <div className="merchItemModalBody">
           <div className="image">
-            <button className="fullscreen" onClick={() => setFullscreen(true)}>
+            <button
+              className="fullscreen"
+              onClick={() => setFullscreen("product")}
+            >
               <SVG src={`/solid-scale.svg`} width={40} height={40} />
             </button>
             {product.images.length > 1 && (
@@ -428,14 +452,16 @@ function MerchItemModal({
                 })}
               </div>
             )}
+            <div className="sizeChart">
+              <button onClick={() => setFullscreen("sizeChart")}>
+                <GlitchText label="[Size Chart]" hover />
+              </button>
+            </div>
             <div className="price">${price()}</div>
           </div>
           <div className="buttons">
             <button onClick={onAddToCart}>
               <GlitchText label="Add to Cart" hover />
-            </button>
-            <button onClick={onBuyNow}>
-              <GlitchText label="Buy Now" hover />
             </button>
           </div>
         </div>

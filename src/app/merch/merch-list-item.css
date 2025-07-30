@@ -45,6 +45,8 @@
 }
 
 .merch .merchListItem .title {
+  display: flex;
+  align-items: center;
   color: var(--color-terminal-green);
   font-size: 14px;
   line-height: 16px;
@@ -63,6 +65,10 @@
   border-bottom: 2px solid var(--color-terminal-green-50);
   background-color: var(--color-terminal-green-5);
   padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -1.5px;
 }
 
 .merch .merchListItem .merchListItemFooter {
