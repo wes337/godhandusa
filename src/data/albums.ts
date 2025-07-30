@@ -1,4 +1,72 @@
 const ALBUMS = [
+    {
+    title: "IGNORANCE IS BLISS",
+    cover: "/albums/3.jpg",
+    id: "2PKM1ic0L8LyhrkwMa4Tom",
+    releaseDate: Date.parse("30 Jul 2024 00:00:00 PDT"),
+    tracks: [
+      {
+        trackNo: 1,
+        title: "AMBULANCE",
+        durationMS: 137294,
+        id: "6GgEKWNTo7Yr7hBd0Urgow",
+      },
+      {
+        trackNo: 2,
+        title: "YOU ALREADY KNOW",
+        durationMS: 194400,
+        id: "57RAspJVZjKOe48PnYKalr",
+      },
+      {
+        trackNo: 3,
+        title: "WHAT IT IS HOE?!",
+        durationMS: 166000,
+        id: "2EKkNtq2klE0zrn8Y8mtDw",
+      },
+      {
+        trackNo: 4,
+        title: "ASSHOLE",
+        durationMS: 170000,
+        id: "3Q8vswDG7s0P5qdz9G2kPl",
+      },
+      {
+        trackNo: 5,
+        title: "CHILL TF OUT",
+        durationMS: 195000,
+        id: "5hJlwIUteRDfn7SwCBAtKG",
+      },
+      {
+        trackNo: 6,
+        title: "CHICKEN IN THE CROCK POT",
+        durationMS: 160000,
+        id: "6YjaGyQScy3qza09lb0etx",
+      },
+      {
+        trackNo: 7,
+        title: "77.7 HAND OF GOD FM NO.1",
+        durationMS: 691000,
+        id: "0tOqCTkPpdruplpOau6Gc7",
+      },
+      {
+        trackNo: 8,
+        title: "1-800-IWANNADIE",
+        durationMS: 142000,
+        id: "0GvrDRM26cpRpwH7FoSR4o",
+      },
+      {
+        trackNo: 9,
+        title: "NU-METAL",
+        durationMS: 173000,
+        id: "5Efkd5bBqOZsGKzS34nsqh",
+      },
+      {
+        trackNo: 10,
+        title: "THERE'S A FINE LINE",
+        durationMS: 215000,
+        id: "2P3KgB6EKOrSsqndhf1rBd",
+      },
+    ],
+  }
   {
     title: "GODHAND VOLUME 0",
     cover: "/albums/0.jpg",
