@@ -8,13 +8,13 @@ const ALBUMS = [
       {
         trackNo: 1,
         title: "AMBULANCE",
-        durationMS: 137294,
+        durationMS: 147000,
         id: "6GgEKWNTo7Yr7hBd0Urgow",
       },
       {
         trackNo: 2,
         title: "YOU ALREADY KNOW",
-        durationMS: 194400,
+        durationMS: 204000,
         id: "57RAspJVZjKOe48PnYKalr",
       },
       {
@@ -45,7 +45,7 @@ const ALBUMS = [
         trackNo: 7,
         title: "77.7 HAND OF GOD FM NO.1",
         durationMS: 691000,
-        id: "0tOqCTkPpdruplpOau6Gc7",
+        id: "6yNULsgrffsAG88k7qAVKU",
       },
       {
         trackNo: 8,
