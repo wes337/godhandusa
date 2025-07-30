@@ -1,5 +1,5 @@
 const ALBUMS = [
-    {
+  {
     title: "IGNORANCE IS BLISS",
     cover: "/albums/3.jpg",
     id: "2PKM1ic0L8LyhrkwMa4Tom",
@@ -66,7 +66,7 @@ const ALBUMS = [
         id: "2P3KgB6EKOrSsqndhf1rBd",
       },
     ],
-  }
+  },
   {
     title: "GODHAND VOLUME 0",
     cover: "/albums/0.jpg",
