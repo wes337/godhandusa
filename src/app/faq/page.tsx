@@ -7,9 +7,9 @@ export const revalidate = 0;
 export const dynamic = "force-dynamic";
 
 export default async function FAQ() {
-  const page = await Shopify.getPageByHandle("contact");
+  const faq = await Shopify.getPageByHandle("contact");
 
-  if (!page) {
+  if (!faq) {
     return (
       <div className="faq">
         <h1 className="title">404</h1>
@@ -31,10 +31,7 @@ export default async function FAQ() {
         />
       </Link>
       <h1 className="title">FAQ</h1>
-      <div
-        className="content"
-        dangerouslySetInnerHTML={{ __html: page.body }}
-      />
+      <div className="content" dangerouslySetInnerHTML={{ __html: faq.body }} />
     </div>
   );
 }
