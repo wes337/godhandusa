@@ -357,4 +357,6 @@ const ALBUMS = [
   },
 ];
 
+ALBUMS.sort((a, b) => b.releaseDate - a.releaseDate);
+
 export default ALBUMS;
