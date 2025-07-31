@@ -9,6 +9,28 @@ export default class Zendesk {
     `${Zendesk.email}/token:${process.env.ZENDESK_API_TOKEN}`
   ).toString("base64");
 
+  static async uploadFile(file: File) {
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    const response = await axios.post(
+      `https://${Zendesk.domain}/api/v2/uploads?filename=${encodeURIComponent(
+        file.name
+      )}`,
+      buffer,
+      {
+        headers: {
+          "Content-Type": file.type || "application/octet-stream",
+          Authorization: `Basic ${Zendesk.authToken}`,
+        },
+        maxContentLength: 20 * 1024 * 1024,
+        maxBodyLength: 20 * 1024 * 1024,
+      }
+    );
+
+    return response.data.upload.token;
+  }
+
   static async createTicket(
     requester: { name: string; email: string },
     issue: string,

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Shopify from "@/lib/shopify";
-import Zendesk from "@/components/zendesk";
 import Footer from "@/components/footer";
 import MerchList from "./merch-list";
 import "./merch.css";
@@ -34,7 +33,6 @@ export default function Merch() {
         <MerchList products={products?.results || []} />
         <Footer />
       </div>
-      <Zendesk />
     </>
   );
 }
