@@ -23,7 +23,7 @@
 
 .faq .logo {
   height: var(--logo-size);
-  margin: auto;
+  margin: 0 auto;
   padding: 16px;
   margin-bottom: 24px;
   filter: drop-shadow(2px 2px 0px var(--color-terminal-green-50));
@@ -37,4 +37,22 @@
 
 .faq .logo:hover {
   opacity: 1;
+}
+
+.faq .title {
+  all: unset;
+  text-align: center;
+  font-size: 24px;
+}
+
+.faq .content {
+  width: 800px;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+.faq blockquote {
+  color: var(--color-terminal-green);
+  padding: 0;
+  margin: 0;
 }

@@ -31,6 +31,7 @@ export default function Footer() {
   const [time, setTime] = useState("");
   const [showExtras, setShowExtras] = useState(pathname === "/");
   const [showBackButton, setShowBackButton] = useState(pathname !== "/");
+  const [showFAQ, setShowFAQ] = useState(pathname !== "/faq");
   const [speed, setSpeed] = useState("fast");
   const [date, setDate] = useState("");
   const [timestamp, setTimestamp] = useState(Date.now());
@@ -38,6 +39,7 @@ export default function Footer() {
   useEffect(() => {
     setShowExtras(pathname === "/");
     setShowBackButton(pathname !== "/");
+    setShowFAQ(pathname !== "/faq");
   }, [pathname]);
 
   useEffect(() => {
@@ -128,6 +130,7 @@ export default function Footer() {
           </div>
         )}
         <div className="legal">
+          {showFAQ && <Link href="/faq">FAQ</Link>}
           <GlitchText label="℗ 2025 Eye and Hand Society" />
         </div>
         <div className="statusBar">

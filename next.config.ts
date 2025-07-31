@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    largePageDataBytes: 800 * 1000,
+  },
   images: {
     remotePatterns: [
       {

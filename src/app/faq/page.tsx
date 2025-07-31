@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Shopify from "@/lib/shopify";
+import Footer from "@/components/footer";
 import "./faq.css";
 
 export const revalidate = 0;
@@ -32,6 +33,7 @@ export default async function FAQ() {
       </Link>
       <h1 className="title">FAQ</h1>
       <div className="content" dangerouslySetInnerHTML={{ __html: faq.body }} />
+      <Footer />
     </div>
   );
 }

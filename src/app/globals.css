@@ -33,6 +33,11 @@
     var(--color-off-white),
     transparent 50%
   );
+  --color-off-white-75: color-mix(
+    in srgb,
+    var(--color-off-white),
+    transparent 25%
+  );
   --color-gold: #f0c05a;
   --color-orange: #bf9b30;
   --color-red: #ff003c;

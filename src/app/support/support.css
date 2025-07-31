@@ -1,0 +1,112 @@
+.support {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  max-height: -webkit-fill-available;
+
+  --album-width: 400px;
+  --logo-size: 120px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .support {
+    --album-width: 340px;
+    --logo-size: 80px;
+  }
+}
+
+@media screen and (max-height: 940px) {
+  .support {
+    --logo-size: 80px;
+  }
+}
+
+.support .logo {
+  height: var(--logo-size);
+  margin: auto;
+  padding: 16px;
+  margin-bottom: 24px;
+  filter: drop-shadow(2px 2px 0px var(--color-terminal-green-50));
+  opacity: 0.75;
+}
+
+.support .logo img {
+  height: 100%;
+  width: auto;
+}
+
+.support .logo:hover {
+  opacity: 1;
+}
+
+.support h1 {
+  all: unset;
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.support textarea {
+  resize: none;
+}
+
+.support form {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  max-width: 85vw;
+  gap: 16px;
+}
+
+.support input,
+.support textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-white);
+  background-color: color-mix(
+    in srgb,
+    var(--color-terminal-green) 5%,
+    var(--color-black)
+  );
+  border: 2px solid var(--color-terminal-green-50);
+  box-shadow: 4px 4px 0 var(--color-terminal-green-25);
+  font-family: "Share Tech Mono", monospace;
+  padding: 0 4px;
+}
+
+.support label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--color-terminal-green);
+}
+
+.support button {
+  all: unset;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 24px;
+  padding: 8px 0;
+  text-align: center;
+  user-select: none;
+  color: var(--color-white);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-10);
+  border: 2px solid var(--color-terminal-green-50);
+  box-shadow: 4px 4px 0 var(--color-terminal-green-25);
+  background-color: var(--color-terminal-green-5);
+  text-transform: uppercase;
+}
+
+.support button:hover {
+  border-color: var(--color-white);
+}
+
+.support .subLabel {
+  font-size: 12px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--color-off-white-75);
+}
