@@ -10,11 +10,13 @@ async function createSupportTicket(formData: FormData) {
 
   const email = formData.get("email") as string;
   const name = formData.get("name") as string;
-  // const order = formData.get("order") as string;
-  const subject = formData.get("subject") as string;
+  const order = formData.get("order") as string;
   const body = formData.get("body") as string;
+  const issue = formData.get("issue") as string;
+  const uploads = [];
+  const requester = { name, email };
 
-  await Zendesk.createTicket({ name, email }, subject, body);
+  await Zendesk.createTicket(requester, issue, body, order, uploads);
 
   redirect("/support/success");
 }
@@ -53,8 +55,22 @@ export default async function Support() {
           <input type="text" name="order" />
         </div>
         <div>
-          <label htmlFor="subject">Subject</label>
-          <input type="text" name="subject" required />
+          <label htmlFor="issue">Issue Type</label>
+          <select name="issue" required>
+            {[
+              "",
+              "Where Is My Order?",
+              "Redelivery or Lost Package",
+              "Missing/Wrong Item In Package",
+              "Cancel/Edit Order Information",
+              "Damaged/Defective Product",
+              "Other",
+            ].map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label htmlFor="body">How can we help you?</label>

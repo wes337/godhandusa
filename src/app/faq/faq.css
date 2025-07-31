@@ -51,7 +51,8 @@
   margin: 0 auto;
 }
 
-.faq blockquote {
+.faq blockquote,
+.faq strong {
   color: var(--color-terminal-green);
   padding: 0;
   margin: 0;

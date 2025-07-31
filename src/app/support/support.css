@@ -60,7 +60,8 @@
 }
 
 .support input,
-.support textarea {
+.support textarea,
+.support select {
   width: 100%;
   box-sizing: border-box;
   font-size: 16px;
@@ -75,6 +76,18 @@
   box-shadow: 4px 4px 0 var(--color-terminal-green-25);
   font-family: "Share Tech Mono", monospace;
   padding: 0 4px;
+  border-radius: 0 !important;
+}
+
+.support select {
+  height: 28px;
+  border-radius: 0;
+}
+
+.support input:focus,
+.support textarea:focus {
+  outline: 0;
+  border-color: var(--color-white);
 }
 
 .support label {

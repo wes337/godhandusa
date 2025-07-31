@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default class Zendesk {
   static domain = "godhandusa.zendesk.com";
-  static email = "support@godhandusa.zendesk.com";
+  static email = process.env.ZENDESK_EMAIL;
   static authToken = Buffer.from(
     `${Zendesk.email}/token:${process.env.ZENDESK_API_TOKEN}`
   ).toString("base64");
@@ -12,51 +12,37 @@ export default class Zendesk {
   static async createTicket(
     requester: { name: string; email: string },
     subject: string,
-    body: string
+    body: string,
+    order: string,
+    uploads: string[]
   ) {
-    try {
-      const ticket = {
-        requester: {
-          name: requester.name,
-          email: requester.email,
-        },
-        subject,
-        comment: {
-          body,
-        },
-        priority: "normal",
-      };
+    const ticket = {
+      requester,
+      subject,
+      comment: {
+        body,
+        uploads,
+      },
+      priority: "normal",
+      custom_fields: [
+        { id: "4833800983839", value: requester.name },
+        { id: "4833869099551", value: requester.email },
+        { id: "4833861297951", value: order },
+        { id: "4833808736927", value: subject },
+      ],
+    };
 
-      const response = await axios.post(
-        `https://${Zendesk.domain}/api/v2/tickets.json`,
-        { ticket },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Basic ${Zendesk.authToken}`,
-          },
-        }
-      );
-
-      return response.data.ticket;
-    } catch (error: any) {
-      console.log(error.message);
-      throw Error(error);
-    }
-  }
-
-  static async getTicket(ticketId: string) {
-    const response = await axios.get(
-      `https://${Zendesk.domain}/api/v2/tickets/${ticketId}.json`,
+    const response = await axios.post(
+      `https://${Zendesk.domain}/api/v2/tickets.json`,
+      { ticket },
       {
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Basic ${Zendesk.authToken}`,
         },
       }
     );
 
-    const ticket = response.data.ticket;
-
-    return ticket || null;
+    return response.data.ticket;
   }
 }
