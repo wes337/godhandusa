@@ -11,24 +11,24 @@ export default class Zendesk {
 
   static async createTicket(
     requester: { name: string; email: string },
-    subject: string,
+    issue: string,
     body: string,
     order: string,
     uploads: string[]
   ) {
     const ticket = {
       requester,
-      subject,
       comment: {
         body,
         uploads,
       },
       priority: "normal",
+      tags: [issue],
       custom_fields: [
         { id: "4833800983839", value: requester.name },
         { id: "4833869099551", value: requester.email },
         { id: "4833861297951", value: order },
-        { id: "4833808736927", value: subject },
+        { id: "4833808736927", value: issue },
       ],
     };
 

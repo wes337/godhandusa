@@ -21,6 +21,29 @@ async function createSupportTicket(formData: FormData) {
   redirect("/support/success");
 }
 
+const ISSUES = [
+  {
+    label: "Where Is My Order?",
+    tag: "where_is_my_order",
+  },
+  {
+    label: "Redelivery or Lost Package",
+    tag: "redelivery_or_lost_package",
+  },
+  {
+    label: "Missing/Wrong Item In Package",
+    tag: "missing/wrong_item_in_package",
+  },
+  {
+    label: "Cancel/Edit Order Information",
+    tag: "cancel/edit_order_information",
+  },
+  {
+    label: "Damaged/Defective Product",
+    tag: "damaged/defective_product",
+  },
+];
+
 export default async function Support() {
   return (
     <div className="support">
@@ -57,17 +80,9 @@ export default async function Support() {
         <div>
           <label htmlFor="issue">Issue Type</label>
           <select name="issue" required>
-            {[
-              "",
-              "Where Is My Order?",
-              "Redelivery or Lost Package",
-              "Missing/Wrong Item In Package",
-              "Cancel/Edit Order Information",
-              "Damaged/Defective Product",
-              "Other",
-            ].map((option) => (
-              <option key={option} value={option}>
-                {option}
+            {ISSUES.map(({ label, tag }) => (
+              <option key={tag} value={tag}>
+                {label}
               </option>
             ))}
           </select>
