@@ -23,6 +23,10 @@ async function createSupportTicket(formData: FormData) {
 
 const ISSUES = [
   {
+    label: "",
+    tag: undefined,
+  },
+  {
     label: "Where Is My Order?",
     tag: "where_is_my_order",
   },
@@ -80,8 +84,8 @@ export default async function Support() {
         <div>
           <label htmlFor="issue">Issue Type</label>
           <select name="issue" required>
-            {ISSUES.map(({ label, tag }) => (
-              <option key={tag} value={tag}>
+            {ISSUES.map(({ label, tag }, index) => (
+              <option key={index} value={tag}>
                 {label}
               </option>
             ))}
