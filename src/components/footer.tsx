@@ -130,20 +130,19 @@ export default function Footer() {
         <div className="legal">
           <GlitchText label="℗ 2025 Eye and Hand Society" />
         </div>
-        <div className="help">
-          {pathname !== "/faq" && (
+        {pathname.match(/merch/) && (
+          <div className="help">
             <Link href="/faq">
               <div>[#]</div>
               <div>FAQ</div>
             </Link>
-          )}
-          {pathname !== "/support" && (
+
             <Link href="/support">
               <div>[?]</div>
               <div>Help</div>
             </Link>
-          )}
-        </div>
+          </div>
+        )}
         <div className="statusBar">
           <div className="time">
             System Time: <span>{time}</span>

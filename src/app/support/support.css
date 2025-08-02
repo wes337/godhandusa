@@ -47,11 +47,11 @@
   margin-bottom: 16px;
 }
 
-.support textarea {
+.supportForm textarea {
   resize: none;
 }
 
-.support form {
+.supportForm {
   display: flex;
   flex-direction: column;
   width: 600px;
@@ -59,9 +59,9 @@
   gap: 16px;
 }
 
-.support input,
-.support textarea,
-.support select {
+.supportForm input,
+.supportForm textarea,
+.supportForm select {
   width: 100%;
   box-sizing: border-box;
   font-size: 16px;
@@ -79,24 +79,24 @@
   border-radius: 0 !important;
 }
 
-.support select {
+.supportForm select {
   height: 28px;
   border-radius: 0;
 }
 
-.support input:focus,
-.support textarea:focus {
+.supportForm input:focus,
+.supportForm textarea:focus {
   outline: 0;
   border-color: var(--color-white);
 }
 
-.support label {
+.supportForm label {
   font-size: 12px;
   text-transform: uppercase;
   color: var(--color-terminal-green);
 }
 
-.support button {
+.supportForm button {
   all: unset;
   cursor: pointer;
   font-size: 24px;
@@ -112,14 +112,25 @@
   text-transform: uppercase;
 }
 
-.support button:hover {
+.supportForm button:hover {
   border-color: var(--color-white);
 }
 
-.support .subLabel {
+.supportForm button:disabled {
+  pointer-events: none;
+}
+
+.supportForm .subLabel {
   font-size: 12px;
   line-height: 1;
   text-transform: uppercase;
   margin-bottom: 8px;
   color: var(--color-off-white-75);
+}
+
+.supportForm .error {
+  font-size: 14px;
+  color: var(--color-red);
+  margin-top: 8px;
+  text-transform: uppercase;
 }
