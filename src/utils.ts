@@ -97,3 +97,6 @@ export function getCurrentTime() {
   const seconds = String(now.getSeconds()).padStart(2, "0");
   return `${hours}:${minutes}:${seconds}`;
 }
+
+export const MAX_ATTACHMENTS = 5;
+export const MAX_ATTACHMENTS_FILE_SIZE = 20 * 1024 * 1024; // 20MB

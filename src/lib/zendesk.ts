@@ -28,7 +28,7 @@ export default class Zendesk {
       }
     );
 
-    return response.data.upload.token;
+    return response.data.upload.token as string;
   }
 
   static async createTicket(

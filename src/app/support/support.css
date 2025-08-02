@@ -49,6 +49,7 @@
 
 .supportForm textarea {
   resize: none;
+  height: 120px;
 }
 
 .supportForm {
@@ -133,4 +134,81 @@
   color: var(--color-red);
   margin-top: 8px;
   text-transform: uppercase;
+}
+
+.supportForm .attachments {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  color: var(--color-white);
+  background-color: color-mix(
+    in srgb,
+    var(--color-terminal-green) 5%,
+    var(--color-black)
+  );
+  border: 2px solid var(--color-terminal-green-50);
+  box-shadow: 4px 4px 0 var(--color-terminal-green-25);
+  height: 80px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.supportForm .attachments span {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-weight: 300;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  cursor: pointer;
+}
+
+.supportForm .attachments input {
+  all: unset;
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.supportForm .files {
+  display: flex;
+  gap: 8px;
+}
+
+.supportForm .file {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 200px;
+  height: 40px;
+  border: 2px solid var(--color-terminal-green-50);
+  box-shadow: 4px 4px 0 var(--color-terminal-green-25);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.supportForm .fileName {
+  width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+  letter-spacing: -1px;
+}
+
+.supportForm .remove {
+  all: unset;
+  display: flex;
+  cursor: pointer;
+  z-index: 2;
 }
