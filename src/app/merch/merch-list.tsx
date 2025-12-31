@@ -191,7 +191,9 @@ function ShoppingCart({ cart, open, setOpen }) {
                             {cartItem.productTitle}
                           </div>
                           <div className="cartItemSize">
-                            {cartItem.variantTitle}
+                            {cartItem.variantTitle === "Default Title"
+                              ? ""
+                              : cartItem.variantTitle}
                           </div>
                         </div>
                         <div className="cartItemPrice">
@@ -246,6 +248,8 @@ function MerchItemModal({
   const [variant, setVariant] = useState<ProductVariant | null>(null);
   const [showSizeError, setShowSizeError] = useState(false);
   const [fullscreen, setFullscreen] = useState("");
+
+  const hasSizes = product.variants.length > 1;
 
   const { refs, floatingStyles, context } = useFloating({
     open: showSizes,
@@ -310,14 +314,14 @@ function MerchItemModal({
       return;
     }
 
-    if (!variant) {
+    if (hasSizes && !variant) {
       handleSizeError();
       return;
     }
 
-    await Shopify.addToCart(cart.id, [
-      { merchandiseId: variant.id, quantity: 1 },
-    ]);
+    const merchandiseId = variant?.id || product.variants[0].id;
+
+    await Shopify.addToCart(cart.id, [{ merchandiseId, quantity: 1 }]);
 
     const event = new CustomEvent("updatecart");
     document.dispatchEvent(event);
@@ -413,53 +417,63 @@ function MerchItemModal({
               <button onClick={gotoNextImage}>&gt;&gt;</button>
             )}
           </div>
+
           <div className="details">
-            <button
-              className={`sizeButton${showSizeError ? " error" : ""}`}
-              ref={refs.setReference}
-              {...getReferenceProps()}
-            >
-              [{variant ? variant.title : `Select Size`}]
-            </button>
-            {showSizes && (
-              <div
-                className="sizes"
-                ref={refs.setFloating}
-                style={floatingStyles}
-                {...getFloatingProps()}
-              >
-                {product.variants.map((variant) => {
-                  return (
-                    <button
-                      key={variant.id}
-                      className={!variant.availableForSale ? "soldOut" : ""}
-                      onClick={(event) => {
-                        event.stopPropagation();
+            {hasSizes && (
+              <>
+                <button
+                  className={`sizeButton${showSizeError ? " error" : ""}`}
+                  ref={refs.setReference}
+                  {...getReferenceProps()}
+                >
+                  [{variant ? variant.title : `Select Size`}]
+                </button>
+                {showSizes && (
+                  <div
+                    className="sizes"
+                    ref={refs.setFloating}
+                    style={floatingStyles}
+                    {...getFloatingProps()}
+                  >
+                    {product.variants.map((variant) => {
+                      return (
+                        <button
+                          key={variant.id}
+                          className={!variant.availableForSale ? "soldOut" : ""}
+                          onClick={(event) => {
+                            event.stopPropagation();
 
-                        if (!variant.availableForSale) {
-                          setShowSizes(false);
-                          return;
-                        }
+                            if (!variant.availableForSale) {
+                              setShowSizes(false);
+                              return;
+                            }
 
-                        setVariant(variant);
-                        setShowSizes(false);
-                      }}
-                    >
-                      {variant.title}
-                      {!variant.availableForSale ? <span>(Sold Out)</span> : ""}
-                    </button>
-                  );
-                })}
-              </div>
+                            setVariant(variant);
+                            setShowSizes(false);
+                          }}
+                        >
+                          {variant.title}
+                          {!variant.availableForSale ? (
+                            <span>(Sold Out)</span>
+                          ) : (
+                            ""
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+                <div className="sizeChart">
+                  <button onClick={() => setFullscreen("sizeChart")}>
+                    <GlitchText label="[Size Chart]" hover />
+                  </button>
+                </div>
+              </>
             )}
-            <div className="sizeChart">
-              <button onClick={() => setFullscreen("sizeChart")}>
-                <GlitchText label="[Size Chart]" hover />
-              </button>
-            </div>
             <div className="price">${price()}</div>
           </div>
-          <div className="buttons">
+
+          <div className={`buttons ${!hasSizes ? " borderTop" : ""}`}>
             <button onClick={onAddToCart}>
               <GlitchText label="Add to Cart" hover />
             </button>

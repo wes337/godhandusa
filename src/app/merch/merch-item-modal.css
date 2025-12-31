@@ -92,7 +92,6 @@
   justify-content: center;
   height: calc(100% - 110px);
   width: 100%;
-
   background-color: var(--color-black-50);
 }
 
@@ -253,6 +252,7 @@
   padding: 8px;
   border-top: 2px solid var(--color-terminal-green-50);
   border-bottom: 2px solid var(--color-terminal-green-50);
+  height: 32px;
 }
 
 .merchItemModalBody .details .price {
