@@ -4,7 +4,7 @@ const SHOWS = [
     city: "Van Nuys, CA",
     venue: "HazHeart Store",
     ticketLink:
-      "https://www.instagram.com/p/DT1DlDaEoiy/?img_index=2",
+      "https://www.instagram.com/p/DT1DlDaEoiy/",
     soldOut: false,
   },
 ];
