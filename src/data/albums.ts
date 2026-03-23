@@ -1,9 +1,9 @@
 const ALBUMS = [
     {
     title: "GODHAND VOLUME 3",
-    cover: "/albums/3.jpg",
-    id: "2PKM1ic0L8LyhrkwMa4Tom",
-    releaseDate: Date.parse("30 Jul 2025 00:00:00 PDT"),
+    cover: "/albums/FINAL_GODHAND_VOL_3_COVER.jpg",
+    id: "0XPZj7cckuT6tQ0BQeSfYI",
+    releaseDate: Date.parse("07 Jan 2026 00:00:00 PDT"),
     tracks: [
       {
         trackNo: 1,
