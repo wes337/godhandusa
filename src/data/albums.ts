@@ -1,4 +1,24 @@
 const ALBUMS = [
+    {
+    title: "IGNORANCE IS BLISS",
+    cover: "/albums/3.jpg",
+    id: "2PKM1ic0L8LyhrkwMa4Tom",
+    releaseDate: Date.parse("30 Jul 2025 00:00:00 PDT"),
+    tracks: [
+      {
+        trackNo: 1,
+        title: "AMBULANCE",
+        durationMS: 147000,
+        id: "6GgEKWNTo7Yr7hBd0Urgow",
+      },
+      {
+        trackNo: 2,
+        title: "YOU ALREADY KNOW",
+        durationMS: 204000,
+        id: "57RAspJVZjKOe48PnYKalr",
+      },
+          ],
+  },
   {
     title: "IGNORANCE IS BLISS",
     cover: "/albums/3.jpg",
