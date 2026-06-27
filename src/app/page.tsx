@@ -17,6 +17,15 @@ export default function Home() {
         <NavLink href="/shows" label="Shows" />
         <NavLink href="/merch" label="Merch" />
       </div>
+      <div className="new">
+        <a
+          href="https://www.racingthoughtsrecords.com/godhandusa"
+          target="blank"
+          rel="noreferrer"
+        >
+          New Physical Media
+        </a>
+      </div>
       <Footer />
     </div>
   );

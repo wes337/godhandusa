@@ -15,7 +15,7 @@ export default function Merch() {
 
   useEffect(() => {
     Shopify.getProductsFromCollection("643232170278", 100).then((products) =>
-      setProducts(products as any)
+      setProducts(products as any),
     );
   }, []);
 
@@ -30,6 +30,15 @@ export default function Merch() {
             height={378}
           />
         </Link>
+        <div className="new">
+          <a
+            href="https://www.racingthoughtsrecords.com/godhandusa"
+            target="blank"
+            rel="noreferrer"
+          >
+            New Physical Media
+          </a>
+        </div>
         <MerchList products={products?.results || []} />
         <Footer />
       </div>

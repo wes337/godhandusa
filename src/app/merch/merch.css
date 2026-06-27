@@ -733,3 +733,49 @@
 .shoppingCartPanel .cartItemCheckout:hover {
   background-color: var(--color-off-white-10);
 }
+
+.merch .new {
+  display: flex;
+  margin-bottom: 48px;
+}
+
+.merch .new a {
+  text-align: center;
+  width: 100%;
+  font-weight: 700;
+  font-size: 32px;
+  text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: all;
+  color: var(--color-white);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  letter-spacing: -2px;
+  text-decoration: none;
+}
+
+.merch .new a::before {
+  content: "[";
+  color: var(--color-terminal-green-50);
+  text-shadow: 2px 1px 0 var(--color-terminal-green-25);
+}
+
+.merch .new a::after {
+  content: "]";
+  color: var(--color-terminal-green-50);
+  text-shadow: 1px 1px 0 var(--color-terminal-green-25);
+}
+
+.merch .new a:hover {
+  color: var(--color-terminal-green);
+}
+
+.merch .new a:hover::before,
+.merch .new a:hover::after {
+  text-shadow: 2px 1px 0 var(--color-terminal-green-75);
+}
+
+.merch .new a::before {
+  content: "[";
+  color: var(--color-terminal-green-50);
+  text-shadow: 2px 1px 0 var(--color-terminal-green-25);
+}

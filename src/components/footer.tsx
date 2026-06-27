@@ -23,6 +23,8 @@ const MESSAGES = [
   { pre: "Loc", post: "Outside" },
   { pre: "Money", post: "Need sum mo" },
   { pre: "Bitches Stomped", post: Math.round(Math.random() * 1000) },
+  { pre: "Funny Shit", post: "0" },
+  { pre: "Knife Loc", post: "Edge" },
 ];
 
 export default function Footer() {
@@ -128,7 +130,9 @@ export default function Footer() {
           </div>
         )}
         <div className="legal">
-          <GlitchText label="℗ 2025 Eye and Hand Society" />
+          <GlitchText
+            label={`℗ ${new Date().getFullYear()} Eye and Hand Society`}
+          />
         </div>
         {pathname.match(/merch/) && (
           <div className="help">
