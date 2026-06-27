@@ -100,3 +100,5 @@ export function getCurrentTime() {
 
 export const MAX_ATTACHMENTS = 5;
 export const MAX_ATTACHMENTS_FILE_SIZE = 20 * 1024 * 1024; // 20MB
+
+export const SHOW_RACING_THOUGHTS_RECORDS_LINK = false;

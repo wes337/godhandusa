@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Shopify from "@/lib/shopify";
+import { SHOW_RACING_THOUGHTS_RECORDS_LINK } from "@/utils";
 import Footer from "@/components/footer";
 import MerchList from "./merch-list";
 import "./merch.css";
@@ -30,15 +31,17 @@ export default function Merch() {
             height={378}
           />
         </Link>
-        <div className="new">
-          <a
-            href="https://www.racingthoughtsrecords.com/godhandusa"
-            target="blank"
-            rel="noreferrer"
-          >
-            New Physical Media
-          </a>
-        </div>
+        {SHOW_RACING_THOUGHTS_RECORDS_LINK && (
+          <div className="new">
+            <a
+              href="https://www.racingthoughtsrecords.com/godhandusa"
+              target="blank"
+              rel="noreferrer"
+            >
+              New Physical Media
+            </a>
+          </div>
+        )}
         <MerchList products={products?.results || []} />
         <Footer />
       </div>

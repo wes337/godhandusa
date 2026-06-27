@@ -1,3 +1,4 @@
+import { SHOW_RACING_THOUGHTS_RECORDS_LINK } from "@/utils";
 import Footer from "@/components/footer";
 import SplashImage from "@/components/splash-image";
 import NavLink from "@/components/nav-link";
@@ -17,15 +18,17 @@ export default function Home() {
         <NavLink href="/shows" label="Shows" />
         <NavLink href="/merch" label="Merch" />
       </div>
-      <div className="new">
-        <a
-          href="https://www.racingthoughtsrecords.com/godhandusa"
-          target="blank"
-          rel="noreferrer"
-        >
-          New Physical Media
-        </a>
-      </div>
+      {SHOW_RACING_THOUGHTS_RECORDS_LINK && (
+        <div className="new">
+          <a
+            href="https://www.racingthoughtsrecords.com/godhandusa"
+            target="blank"
+            rel="noreferrer"
+          >
+            New Physical Media
+          </a>
+        </div>
+      )}
       <Footer />
     </div>
   );
