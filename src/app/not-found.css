@@ -1,0 +1,97 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: -webkit-fill-available;
+
+  --logo-size: 120px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .not-found {
+    --logo-size: 80px;
+  }
+}
+
+@media screen and (max-height: 940px) {
+  .not-found {
+    --logo-size: 80px;
+  }
+}
+
+.not-found .logo {
+  height: var(--logo-size);
+  margin: 0 auto;
+  padding: 16px;
+  margin-bottom: 24px;
+  filter: drop-shadow(2px 2px 0px var(--color-terminal-green-50));
+  opacity: 0.75;
+}
+
+.not-found .logo img {
+  height: 100%;
+  width: auto;
+}
+
+.not-found .logo:hover {
+  opacity: 1;
+}
+
+.not-found .terminal {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: fit-content;
+  background-color: var(--color-terminal-green-5);
+  border: 2px solid var(--color-terminal-green-50);
+  font-size: 14px;
+  translate: 0 -16px;
+  box-shadow: 4px 4px 0 var(--color-terminal-green-25);
+  filter: saturate(0.75);
+}
+
+.not-found .terminal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  padding: 32px;
+  text-transform: uppercase;
+}
+
+.not-found .terminal-body .code {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-white);
+  font-size: 96px;
+  line-height: 1;
+  text-shadow: 4px 4px 0 var(--color-terminal-green-25);
+  margin-bottom: 8px;
+}
+
+.not-found .terminal-body .line.detail {
+  color: var(--color-terminal-green);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+  font-size: 12px;
+}
+
+.not-found .terminal-body .return {
+  all: unset;
+  cursor: pointer;
+  margin-top: 16px;
+  color: var(--color-gold);
+  text-shadow: 2px 2px 0 var(--color-orange-50);
+  border: 2px solid var(--color-gold);
+  padding: 10px 24px;
+  font-size: 18px;
+  letter-spacing: -1px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.not-found .terminal-body .return:hover {
+  background-color: color-mix(in srgb, var(--color-gold), transparent 75%);
+}

@@ -1,0 +1,363 @@
+.admin {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  gap: 24px;
+}
+
+.admin-login,
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  max-width: 520px;
+  background-color: var(--color-terminal-green-5);
+  border: 2px solid var(--color-terminal-green-50);
+  box-shadow: 4px 4px 0 var(--color-terminal-green-25);
+  filter: saturate(0.75);
+  padding: 16px;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.admin-panel {
+  margin: 0 auto;
+}
+
+.admin-header {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  position: relative;
+}
+
+.admin-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-logout {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
+
+.admin-title {
+  color: var(--color-terminal-green);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.admin-nav {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.admin-nav a {
+  all: unset;
+  cursor: pointer;
+  color: var(--color-terminal-green-50);
+  text-transform: uppercase;
+  border: 2px solid var(--color-terminal-green-25);
+  padding: 6px 12px;
+  min-width: 48px;
+  font-size: 14px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+.admin-nav a:hover {
+  background-color: var(--color-terminal-green-10);
+}
+
+.admin-nav a.active {
+  color: var(--color-white);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  background-color: var(--color-terminal-green-10);
+}
+
+.admin-section {
+  color: var(--color-terminal-green);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: -1px;
+  border-bottom: 2px solid var(--color-terminal-green-25);
+  padding-bottom: 4px;
+  margin-top: 8px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  border-bottom: 2px solid var(--color-terminal-green-25);
+}
+
+.admin .admin-tabs button {
+  border-bottom: none;
+  color: var(--color-terminal-green-50);
+  text-shadow: none;
+  font-size: 16px;
+  padding: 4px 8px;
+}
+
+.admin .admin-tabs button.active {
+  color: var(--color-white);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  background-color: var(--color-terminal-green-10);
+}
+
+.admin-archive {
+  color: var(--color-blue) !important;
+  text-shadow: 2px 2px 0 var(--color-dark-blue) !important;
+}
+
+.admin-empty {
+  color: var(--color-gray);
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 16px 0;
+}
+
+.admin-show {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 2px solid var(--color-terminal-green-25);
+  padding: 12px;
+  background-color: var(--color-black-25);
+}
+
+.admin-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  .admin-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-fields .admin-field-full {
+  grid-column: 1 / -1;
+}
+
+.admin label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--color-gray);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.admin input[type="text"],
+.admin input[type="password"],
+.admin input[type="date"] {
+  all: unset;
+  cursor: text;
+  background-color: var(--color-black-50);
+  border: 2px solid var(--color-terminal-green-25);
+  color: var(--color-terminal-green);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 6px 8px;
+}
+
+.admin input[type="date"] {
+  color-scheme: dark;
+}
+
+.admin input[type="text"]:focus,
+.admin input[type="password"]:focus,
+.admin input[type="date"]:focus {
+  border-color: var(--color-terminal-green);
+}
+
+.admin-checkbox {
+  flex-direction: row !important;
+  align-items: center;
+  cursor: pointer;
+}
+
+.admin input[type="checkbox"] {
+  accent-color: var(--color-terminal-green);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.admin button {
+  all: unset;
+  cursor: pointer;
+  color: var(--color-gold);
+  text-shadow: 2px 2px 0 var(--color-orange-50);
+  text-transform: uppercase;
+  border: 2px solid var(--color-terminal-green-25);
+  padding: 6px 12px;
+  font-size: 14px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+.admin button:hover {
+  background-color: var(--color-terminal-green-10);
+}
+
+.admin button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.admin-album {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-album-cover {
+  border: 2px solid var(--color-terminal-green-25);
+  object-fit: cover;
+}
+
+.admin-album-cover-empty {
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-black-50);
+  box-sizing: border-box;
+}
+
+.admin-album-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-album-title {
+  color: var(--color-terminal-green);
+  text-shadow: 2px 2px 0 var(--color-terminal-green-25);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.admin-album-meta {
+  color: var(--color-gray);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-black-75);
+  z-index: 10;
+}
+
+.admin-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 11;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(520px, 95vw);
+  max-height: 85vh;
+  overflow-y: auto;
+  background-color: var(--color-dark-green);
+  border: 2px solid var(--color-terminal-green-50);
+  box-shadow: 4px 4px 0 var(--color-terminal-green-25);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.admin-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-track {
+  border: 2px solid var(--color-terminal-green-25);
+  padding: 8px;
+}
+
+.admin input[type="number"] {
+  all: unset;
+  cursor: text;
+  background-color: var(--color-black-50);
+  border: 2px solid var(--color-terminal-green-25);
+  color: var(--color-terminal-green);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 6px 8px;
+}
+
+.admin input[type="number"]:focus {
+  border-color: var(--color-terminal-green);
+}
+
+.admin-buttons {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.admin-buttons button {
+  flex: 1;
+  border-color: color-mix(in srgb, var(--color-gold), transparent 50%);
+  background-color: color-mix(in srgb, var(--color-gold), transparent 85%);
+}
+
+.admin-buttons button:hover,
+.admin-buttons button:focus-visible {
+  border-color: var(--color-gold);
+  background-color: color-mix(in srgb, var(--color-gold), transparent 70%);
+}
+
+.admin-buttons .admin-archive {
+  border-color: color-mix(in srgb, var(--color-blue), transparent 50%);
+  background-color: color-mix(in srgb, var(--color-blue), transparent 85%);
+}
+
+.admin-buttons .admin-archive:hover,
+.admin-buttons .admin-archive:focus-visible {
+  border-color: var(--color-blue);
+  background-color: color-mix(in srgb, var(--color-blue), transparent 70%);
+}
+
+.admin-buttons .admin-delete {
+  border-color: color-mix(in srgb, var(--color-red), transparent 50%);
+  background-color: color-mix(in srgb, var(--color-red), transparent 85%);
+}
+
+.admin-buttons .admin-delete:hover,
+.admin-buttons .admin-delete:focus-visible {
+  border-color: var(--color-red);
+  background-color: color-mix(in srgb, var(--color-red), transparent 70%);
+}
+
+.admin-delete {
+  color: var(--color-red) !important;
+  text-shadow: 2px 2px 0 var(--color-dark-red) !important;
+}
+
+.admin-error {
+  color: var(--color-red);
+  text-shadow: 2px 2px 0 var(--color-dark-red);
+  font-size: 12px;
+  text-transform: uppercase;
+}

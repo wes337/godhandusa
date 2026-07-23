@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "*.shopify.com",
       },
+      {
+        protocol: "https",
+        hostname: "i.ytimg.com",
+      },
+      {
+        protocol: "https",
+        hostname: "i.scdn.co",
+      },
     ],
   },
 };

@@ -93,6 +93,10 @@
   background-color: var(--color-terminal-green-10);
 }
 
+.shows .list .show.no-link {
+  cursor: default;
+}
+
 .shows .list .show .location {
   display: flex;
   flex-direction: column;
@@ -149,6 +153,22 @@
   color: var(--color-gold);
   text-shadow: 2px 2px 0 var(--color-orange-50);
   letter-spacing: 0px;
+  border: 2px solid var(--color-gold);
+  margin-right: 8px;
+}
+
+.shows .list .show .tickets:hover {
+  background-color: color-mix(in srgb, var(--color-gold), transparent 75%);
+}
+
+.shows .list .show .tickets.sold-out {
+  color: var(--color-red);
+  text-shadow: 2px 2px 0 var(--color-dark-red);
+  border-color: var(--color-red);
+}
+
+.shows .list .show .tickets.sold-out:hover {
+  background-color: color-mix(in srgb, var(--color-red), transparent 75%);
 }
 
 .shows .clocks {
