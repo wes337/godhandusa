@@ -1,30 +1,23 @@
-.home {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  max-height: -webkit-fill-available;
+.shows.home {
+  position: relative;
+  z-index: 1;
 }
 
-.home .nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  margin-top: var(--splash-image-height);
-  gap: 24px;
+.shows.home .logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 72px;
+  margin: 8px;
+  padding: 8px;
+  z-index: 2;
 }
 
 .home .new {
-  position: fixed;
-  top: 96px;
-  left: 0;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
-  z-index: 2;
+  padding-top: 24px;
 }
 
 .home .new a {
@@ -32,7 +25,6 @@
   font-size: 32px;
   text-transform: uppercase;
   cursor: pointer;
-  pointer-events: all;
   color: var(--color-white);
   text-shadow: 2px 2px 0 var(--color-terminal-green-25);
   letter-spacing: -2px;
@@ -60,16 +52,60 @@
   text-shadow: 1px 1px 0 var(--color-terminal-green-25);
 }
 
-@media only screen and (max-height: 900px) and (min-width: 600px) {
-  .home .nav {
-    margin-top: calc(var(--splash-image-height) * 2);
-    flex-direction: row;
+.shows.home .banner {
+  margin-top: auto;
+  opacity: 0.75;
+}
+
+.shows.home .banner.intense {
+  opacity: 0.5;
+}
+
+.shows.home .banner canvas {
+  width: min(90vw, 480px);
+  height: auto;
+}
+
+.shows.home .list {
+  margin-top: 16px;
+}
+
+.shows.home .nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 12px 0 4px;
+}
+
+.shows.home .footer {
+  margin-top: 0;
+}
+
+.shows.home .nav .navLink a {
+  width: auto;
+  font-size: 28px;
+}
+
+@media only screen and (max-width: 600px) {
+  .shows.home .logo {
+    height: 56px;
+    margin: 4px;
+  }
+
+  .home .new a {
+    font-size: 20px;
+    letter-spacing: -1px;
+  }
+
+  .shows.home .nav .navLink a {
+    font-size: 22px;
   }
 }
 
 @media only screen and (min-width: 1100px) {
   .home .new a {
     font-size: 40px;
-    margin-bottom: 0;
   }
 }

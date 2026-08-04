@@ -171,21 +171,6 @@
   background-color: color-mix(in srgb, var(--color-red), transparent 75%);
 }
 
-.shows .clocks {
-  display: flex;
-  justify-content: space-evenly;
-  font-size: 12px;
-  line-height: 12px;
-  letter-spacing: -0.5px;
-  text-transform: uppercase;
-  margin: 0 auto;
-  padding: 4px 0;
-  text-align: center;
-  background-color: var(--color-terminal-green-5);
-  width: 100%;
-  color: var(--color-gray);
-}
-
 @media only screen and (min-width: 2000px) {
   .shows .list {
     font-size: 16px;

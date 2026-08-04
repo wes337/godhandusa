@@ -1,35 +1,21 @@
-import { SHOW_RACING_THOUGHTS_RECORDS_LINK } from "@/utils";
-import Footer from "@/components/footer";
+import { getShows } from "@/lib/shows";
+import ShowsList from "./shows/shows-list";
 import SplashImage from "@/components/splash-image";
-import NavLink from "@/components/nav-link";
 import "./home.css";
+
+export const revalidate = 300;
 
 export const metadata = {
   title: "GODHANDUSA",
 };
 
-export default function Home() {
+export default async function Home() {
+  const shows = await getShows();
+
   return (
-    <div className="home">
-      <SplashImage />
-      <div className="nav">
-        <NavLink href="/music" label="Music" />
-        <NavLink href="/videos" label="Videos" />
-        <NavLink href="/shows" label="Shows" />
-        <NavLink href="/merch" label="Merch" />
-      </div>
-      {SHOW_RACING_THOUGHTS_RECORDS_LINK && (
-        <div className="new">
-          <a
-            href="https://www.racingthoughtsrecords.com/godhandusa"
-            target="blank"
-            rel="noreferrer"
-          >
-            New Physical Media
-          </a>
-        </div>
-      )}
-      <Footer />
-    </div>
+    <>
+      <SplashImage src="/guys.png" className="background" />
+      <ShowsList shows={shows} home />
+    </>
   );
 }

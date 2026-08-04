@@ -3,26 +3,80 @@
 import { useState, useEffect, useRef, useCallback, memo } from "react";
 import "./splash-image.css";
 
-const NUMBER_OF_GRAPHICS = 1;
-const ROTATION_INTERVAL = 6000;
+const INTENSE_INTERVAL = 6000;
 const INTENSE_DURATION = 1000;
 
-const preloadImages = () => {
-  const promises: any[] = [];
-  for (let i = 1; i <= NUMBER_OF_GRAPHICS; i++) {
-    const img = new Image();
-    const promise = new Promise((resolve) => {
-      img.onload = () => resolve(img);
-      img.src = `/graphics/graphic-${i}.png`;
-    });
-    promises.push(promise);
+const TINT = { r: 0x00, g: 0xff, b: 0x6a };
+
+const MAX_SIZE = 1600;
+
+const tintImage = (img: HTMLImageElement): HTMLCanvasElement => {
+  const scale = Math.min(1, MAX_SIZE / Math.max(img.width, img.height));
+  const width = Math.round(img.width * scale);
+  const height = Math.round(img.height * scale);
+
+  const source = document.createElement("canvas");
+  source.width = width;
+  source.height = height;
+
+  const sourceContext = source.getContext("2d");
+
+  if (!sourceContext) {
+    return source;
   }
-  return Promise.all(promises);
+
+  sourceContext.drawImage(img, 0, 0, width, height);
+
+  const imageData = sourceContext.getImageData(0, 0, width, height);
+  const data = imageData.data;
+
+  let minX = width;
+  let minY = height;
+  let maxX = -1;
+  let maxY = -1;
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const i = (y * width + x) * 4;
+
+      if (data[i + 3] === 0) {
+        continue;
+      }
+
+      const luminance =
+        (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
+
+      data[i] = TINT.r * luminance;
+      data[i + 1] = TINT.g * luminance;
+      data[i + 2] = TINT.b * luminance;
+
+      if (x < minX) minX = x;
+      if (x > maxX) maxX = x;
+      if (y < minY) minY = y;
+      if (y > maxY) maxY = y;
+    }
+  }
+
+  if (maxX < 0) {
+    return source;
+  }
+
+  const canvas = document.createElement("canvas");
+  canvas.width = maxX - minX + 1;
+  canvas.height = maxY - minY + 1;
+
+  const context = canvas.getContext("2d");
+
+  if (context) {
+    context.putImageData(imageData, -minX, -minY);
+  }
+
+  return canvas;
 };
 
-const imageCache: Record<number, HTMLImageElement> = {};
+const imageCache: Record<string, HTMLCanvasElement> = {};
 
-const getImage = (src: number): Promise<HTMLImageElement> => {
+const getImage = (src: string): Promise<HTMLCanvasElement> => {
   if (imageCache[src]) {
     return Promise.resolve(imageCache[src]);
   }
@@ -30,17 +84,16 @@ const getImage = (src: number): Promise<HTMLImageElement> => {
   return new Promise((resolve) => {
     const img = new Image();
     img.onload = () => {
-      imageCache[src] = img;
-      resolve(img);
+      imageCache[src] = tintImage(img);
+      resolve(imageCache[src]);
     };
-    img.src = `/graphics/graphic-${src}.png`;
+    img.src = src;
   });
 };
 
 interface SplashImageCanvasProps {
-  src: number;
+  src: string;
   intense: boolean;
-  maxDisplacement?: number;
 }
 
 const SplashImageCanvas = memo(({ src, intense }: SplashImageCanvasProps) => {
@@ -116,31 +169,24 @@ const SplashImageCanvas = memo(({ src, intense }: SplashImageCanvasProps) => {
 
 SplashImageCanvas.displayName = "SplashImageCanvas";
 
-export default function SplashImage() {
-  const [src, setSrc] = useState(8);
+export default function SplashImage({
+  src,
+  className,
+}: {
+  src: string;
+  className?: string;
+}) {
   const [intense, setIntense] = useState(false);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    preloadImages().then(() => {
-      setImagesLoaded(true);
+    getImage(src).then(() => {
+      setImageLoaded(true);
     });
-  }, []);
+  }, [src]);
 
   useEffect(() => {
-    if (!imagesLoaded || NUMBER_OF_GRAPHICS === 1) return;
-
-    const interval = setInterval(() => {
-      setSrc((currentSrc) => {
-        return currentSrc === NUMBER_OF_GRAPHICS ? 1 : currentSrc + 1;
-      });
-    }, ROTATION_INTERVAL);
-
-    return () => clearInterval(interval);
-  }, [imagesLoaded]);
-
-  useEffect(() => {
-    if (!imagesLoaded) return;
+    if (!imageLoaded) return;
 
     const handleIntenseEffect = () => {
       setIntense(true);
@@ -156,20 +202,24 @@ export default function SplashImage() {
 
     const interval = setInterval(() => {
       handleIntenseEffect();
-    }, ROTATION_INTERVAL);
+    }, INTENSE_INTERVAL);
 
     return () => {
       clearTimeout(initialTimeout);
       clearInterval(interval);
     };
-  }, [imagesLoaded]);
+  }, [imageLoaded]);
 
-  if (!imagesLoaded) {
-    return <div className="splashImage">Loading...</div>;
+  if (!imageLoaded) {
+    return null;
   }
 
   return (
-    <div className={`splashImage${intense ? " intense" : ""}`}>
+    <div
+      className={`splashImage${className ? ` ${className}` : ""}${
+        intense ? " intense" : ""
+      }`}
+    >
       <SplashImageCanvas src={src} intense={intense} />
     </div>
   );
