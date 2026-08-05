@@ -74,9 +74,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  /* Must stay above 0.62em so a hovered bracket never reaches its neighbour. */
+  gap: 0.9em;
   margin-top: auto;
-  padding: 12px 0 4px;
+  /* Side padding is where the outer hover brackets sit, so it scales too. */
+  padding: 12px 0.7em 4px;
+  /* Music/Videos/Merch is 16 monospace chars; below ~470px the viewport, not a
+     fixed size, decides how big they get so the row never wraps. */
+  font-size: min(calc(7.5vw - 1.5px), 34px);
 }
 
 .shows.home .footer {
@@ -84,8 +91,23 @@
 }
 
 .shows.home .nav .navLink a {
+  position: relative;
   width: auto;
-  font-size: 28px;
+  font-size: inherit;
+}
+
+/* Taken out of the flow: in-flow they'd reserve 6 invisible characters, which
+   is over a quarter of the row's width on a phone. */
+.shows.home .nav .navLink a::before {
+  position: absolute;
+  top: 0;
+  left: -0.62em;
+}
+
+.shows.home .nav .navLink a::after {
+  position: absolute;
+  top: 0;
+  right: -0.62em;
 }
 
 @media only screen and (max-width: 600px) {
@@ -100,7 +122,7 @@
   }
 
   .shows.home .nav .navLink a {
-    font-size: 22px;
+    letter-spacing: 1px;
   }
 }
 
