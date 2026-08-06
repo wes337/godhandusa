@@ -38,7 +38,7 @@ export default function Merch() {
               target="blank"
               rel="noreferrer"
             >
-              New Physical Media
+              Physical Media
             </a>
           </div>
         )}

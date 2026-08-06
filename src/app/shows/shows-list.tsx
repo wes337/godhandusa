@@ -34,7 +34,7 @@ export default function ShowsList({
             target="blank"
             rel="noreferrer"
           >
-            New Physical Media
+            Physical Media
           </a>
         </div>
       )}
